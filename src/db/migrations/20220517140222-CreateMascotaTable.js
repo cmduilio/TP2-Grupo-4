@@ -58,10 +58,12 @@ module.exports = {
 
       createdAt: {
         type: Sequelize.DataTypes.DATE,
+        defaultValue: Sequelize.DataTypes.NOW
       },
 
       updateAt: {
         type: Sequelize.DataTypes.DATE,
+        defaultValue: Sequelize.DataTypes.NOW
       }
     });
 
