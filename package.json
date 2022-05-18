@@ -3,6 +3,7 @@
     "test": "mocha"
   },
   "dependencies": {
+    "@ngneat/falso": "^5.3.0",
     "chai": "^4.3.6",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",

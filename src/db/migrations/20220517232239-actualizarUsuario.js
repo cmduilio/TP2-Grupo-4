@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('usuario', {
+    await queryInterface.createTable('users', {
 
       id: {
         type: Sequelize.DataTypes.INTEGER,
@@ -10,25 +10,25 @@ module.exports = {
         primaryKey: true
       },
 
-      nombreUsuario: {
+      userName: {
         type : Sequelize.DataTypes.STRING(50),
         allowNull: false
 
       },
 
-      contrasena: {
+      password: {
         type : Sequelize.DataTypes.STRING(50),
         allowNull: false
 
       },
 
-      nombre: {
+      name: {
         type : Sequelize.DataTypes.STRING(50),
         allowNull: false
 
       },
 
-      apellido: {
+      lastName: {
         type : Sequelize.DataTypes.STRING(50),
         allowNull: false
 
@@ -40,19 +40,19 @@ module.exports = {
 
       },
 
-      domicilio: {
+      address: {
         type : Sequelize.DataTypes.STRING(50),
         allowNull: false
 
       },
 
-      telefono: {
+      phoneNumber: {
         type : Sequelize.DataTypes.INTEGER,
         allowNull: false
 
       },
 
-      requisito: {
+      requise: {
         type : Sequelize.DataTypes.STRING(200),
         allowNull: false
 
@@ -72,7 +72,7 @@ module.exports = {
     )},
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('usuario'); 
+    await queryInterface.dropTable('users'); 
   }
 
 }
