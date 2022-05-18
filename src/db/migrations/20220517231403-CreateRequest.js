@@ -3,7 +3,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     
-    await queryInterface.createTable('solicitudes', { 
+    await queryInterface.createTable('requests', { 
       
       id: {
         type: Sequelize.DataTypes.INTEGER,
@@ -36,12 +36,7 @@ module.exports = {
         defaultValue: Sequelize.DataTypes.NOW
       },
 
-      updateAt: {
-        type: Sequelize.DataTypes.DATE,
-        defaultValue: Sequelize.DataTypes.NOW
-      },
-
-      deletedAt: {
+      updatedAt: {
         type: Sequelize.DataTypes.DATE,
         defaultValue: Sequelize.DataTypes.NOW
       }
@@ -51,7 +46,7 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
   
-    await queryInterface.dropTable('solicitudes');
+    await queryInterface.dropTable('requests');
      
   }
 };
