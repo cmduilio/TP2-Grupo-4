@@ -1,6 +1,8 @@
 'use strict';
 
-const {randFirstName, randLastName, randNumber} = require('@ngneat/falso')
+const {randFirstName, randLastName, randNumber,
+       randEmail, randPassword, randUserName,
+       randStreetAddress, randText, randBetweenDate} = require('@ngneat/falso')
 
 
 module.exports = {
@@ -11,25 +13,25 @@ module.exports = {
       for(var i = 0; i < 1000; i++){
 
         usuarios.push({
-          userName : "Carlox",
+          userName : randUserName(),
     
-          password : "1212",
+          password : randPassword(),
       
           name : randFirstName(),
       
           lastName : randLastName(),
       
-          email : "aaa@aaa",
+          email : randEmail(),
       
-          address : "Case 22",
+          address : randStreetAddress(),
       
-          phoneNumber : "1231232",
+          phoneNumber : randNumber({min: 10000000, max: 90000000}),
       
-          requise : "muchos",
+          requise : randText(),
     
-          createdAt: new Date,
+          createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
     
-          updatedAt: new Date
+          updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
         });
 
       }
