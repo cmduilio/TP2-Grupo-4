@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const Mascot = require('./src/db/models');
+const {Mascot} = require('./src/db/models');
 
 app.get('/', function(req, res) {
     res.send('hello');
