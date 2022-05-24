@@ -61,7 +61,7 @@ module.exports = {
         defaultValue: Sequelize.DataTypes.NOW
       },
 
-      updateAt: {
+      updatedAt: {
         type: Sequelize.DataTypes.DATE,
         defaultValue: Sequelize.DataTypes.NOW
       }
