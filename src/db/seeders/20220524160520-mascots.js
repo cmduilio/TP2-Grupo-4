@@ -1,6 +1,6 @@
 'use strict';
 
-const {randAnimalType, randFirstName, randBoolean, randNumber, randText} = require('@ngneat/falso');
+const {randBetweenDate, randAnimalType, randFirstName, randBoolean, randNumber, randText} = require('@ngneat/falso');
 
 module.exports = {
   async up (queryInterface, Sequelize) {
@@ -8,17 +8,17 @@ module.exports = {
 
     for(let i = 0; i < 100; i++){
       mascots.push({
-        especie: "animal",
-        raza: randAnimalType(),
-        nombre: randFirstName(),
-        tamanio: "mediano",
-        edad: randNumber({min: 0, max: 10}),
-        buscaDuenio: randBoolean(),
-        estaVacunado: randBoolean(),
-        estaCastrado: randBoolean(),
-        comentario: randText(),
-        createdAt: new Date,
-        updatedAt: new Date,
+        species: "animal",
+        race: randAnimalType(),
+        name: randFirstName(),
+        size: "mediano",
+        age: randNumber({min: 0, max: 10}),
+        looksForOwner: randBoolean(),
+        isVaccinated: randBoolean(),
+        isCastrated: randBoolean(),
+        comment: randText(),
+        createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
+        updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
       });
     }
 

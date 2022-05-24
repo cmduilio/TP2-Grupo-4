@@ -11,47 +11,47 @@ module.exports = {
         autoIncrement: true,
       },
 
-      especie: {
+      species: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
 
-      raza: {
+      race: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
 
-      nombre: {
+      name: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
 
-      tamanio: {
+      size: {
         type: Sequelize.DataTypes.STRING,
         allowNull: false,
       },
 
-      edad: {
+      age: {
         type: Sequelize.DataTypes.INTEGER,
         allowNull: false,
       },
 
-      buscaDuenio: {
+      looksForOwner: {
         type: Sequelize.DataTypes.BOOLEAN,
         allowNull: false,
       },
 
-      estaVacunado: {
+      isVaccinated: {
         type: Sequelize.DataTypes.BOOLEAN,
         allowNull: false,
       },
 
-      estaCastrado: {
+      isCastrated: {
         type: Sequelize.DataTypes.BOOLEAN,
         allowNull: false,
       },
 
-      comentario: {
+      comment: {
         type: Sequelize.DataTypes.STRING,
         allowNull: true,
       },
