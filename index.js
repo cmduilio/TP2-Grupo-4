@@ -11,6 +11,13 @@ app.get('/mascots', async function(req, res) {
     let data = await Mascot.findAll();
 
     res.send(data);
-})
+});
+
+app.get('/mascots/:id', async function(req, res) {
+
+    let data = await Mascot.findByPk(req.params.id);
+
+    res.send(data);
+});
 
 app.listen(8001);
