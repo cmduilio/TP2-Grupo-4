@@ -16,64 +16,64 @@ module.exports = (sequelize, DataTypes) => {
   Mascot.init({ 
       
     id: {
-      type: Sequelize.DataTypes.INTEGER,
+      type: sequelize.DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
 
     especie: {
-      type: Sequelize.DataTypes.STRING,
+      type: sequelize.DataTypes.STRING,
       allowNull: false,
     },
 
     raza: {
-      type: Sequelize.DataTypes.STRING,
+      type: sequelize.DataTypes.STRING,
       allowNull: false,
     },
 
     nombre: {
-      type: Sequelize.DataTypes.STRING,
+      type: sequelize.DataTypes.STRING,
       allowNull: false,
     },
 
     tamanio: {
-      type: Sequelize.DataTypes.STRING,
+      type: sequelize.DataTypes.STRING,
       allowNull: false,
     },
 
     edad: {
-      type: Sequelize.DataTypes.INTEGER,
+      type: sequelize.DataTypes.INTEGER,
       allowNull: false,
     },
 
     buscaDuenio: {
-      type: Sequelize.DataTypes.BOOLEAN,
+      type: sequelize.DataTypes.BOOLEAN,
       allowNull: false,
     },
 
     estaVacunado: {
-      type: Sequelize.DataTypes.BOOLEAN,
+      type: sequelize.DataTypes.BOOLEAN,
       allowNull: false,
     },
 
     estaCastrado: {
-      type: Sequelize.DataTypes.BOOLEAN,
+      type: sequelize.DataTypes.BOOLEAN,
       allowNull: false,
     },
 
     comentario: {
-      type: Sequelize.DataTypes.STRING,
+      type: sequelize.DataTypes.STRING,
       allowNull: true,
     },
 
     createdAt: {
-      type: Sequelize.DataTypes.DATE,
-      defaultValue: Sequelize.DataTypes.NOW
+      type: sequelize.DataTypes.DATE,
+      defaultValue: sequelize.DataTypes.NOW
     },
 
     updateAt: {
-      type: Sequelize.DataTypes.DATE,
-      defaultValue: Sequelize.DataTypes.NOW
+      type: sequelize.DataTypes.DATE,
+      defaultValue: sequelize.DataTypes.NOW
     }
   }, {
     sequelize,
