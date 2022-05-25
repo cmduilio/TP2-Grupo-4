@@ -11,8 +11,9 @@ module.exports = {
         autoIncrement: true,
       },
 
-      species: {
-        type: Sequelize.DataTypes.STRING,
+      animal: {
+        type: Sequelize.DataTypes.ENUM('perro', 'gato', 'otro'),
+        defaultValue: 'otro',
         allowNull: false,
       },
 
@@ -27,7 +28,8 @@ module.exports = {
       },
 
       size: {
-        type: Sequelize.DataTypes.STRING,
+        type: Sequelize.DataTypes.ENUM('chico', 'mediano', 'grande'),
+        defaultValue: 'chico',
         allowNull: false,
       },
 
