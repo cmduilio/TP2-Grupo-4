@@ -20,4 +20,11 @@ app.get('/mascots/:id', async function(req, res) {
     res.send(data);
 });
 
+app.post('/mascots', async function (req, res) {
+    
+    await Mascot.create(req.body);
+
+    res.send(req.body);
+})
+
 app.listen(8001);
