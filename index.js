@@ -9,7 +9,7 @@ app.get('/', function(req, res) {
 
 app.get('/mascots', async function(req, res) {
 
-    let data = await Mascot.findAll();
+    let data = await Mascot.findAll({limit: 20});
 
     res.send(data);
 });
