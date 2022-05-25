@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+app.use(express.json());
 const {Mascot} = require('./src/db/models');
 
 app.get('/', function(req, res) {
@@ -21,10 +22,10 @@ app.get('/mascots/:id', async function(req, res) {
 });
 
 app.post('/mascots', async function (req, res) {
-    
+
     await Mascot.create(req.body);
 
-    res.send(req.body);
+    res.send('creado');
 })
 
 app.listen(8001);
