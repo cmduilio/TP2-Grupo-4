@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 
+app.use(express.json())
+
 const {Request} = require('./src/db/models');
 const {User} = require('./src/db/models')
 
@@ -60,13 +62,9 @@ app.get('/requests/:id', async function(req,res){
 })
 
 app.post('/requests', async function(req,res){
-    await Request.create({
-        idOwner: 1,
-        idMascot: 1,
-        idRequester: 2,
-        status: 'open',
-    });
+    console.log(req.body)
+    await Request.create(req.body);
 
-    res.send('created');
+    res.send(req.body);
 })
 app.listen(6001);
