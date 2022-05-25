@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
 
-    species: {
+    animal: {
       type: DataTypes.STRING,
       allowNull: false,
     },
