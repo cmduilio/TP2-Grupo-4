@@ -1,29 +1,29 @@
 const express = require('express');
 const app = express();
 app.use(express.json());
-const {Mascot} = require('./src/db/models');
+const {Pet} = require('./src/db/models');
 
 app.get('/', function(req, res) {
     res.send('hello');
 });
 
-app.get('/mascots', async function(req, res) {
+app.get('/pets', async function(req, res) {
 
-    let data = await Mascot.findAll({limit: 20});
-
-    res.send(data);
-});
-
-app.get('/mascots/:id', async function(req, res) {
-
-    let data = await Mascot.findByPk(req.params.id);
+    let data = await Pet.findAll({limit: 20});
 
     res.send(data);
 });
 
-app.post('/mascots', async function (req, res) {
+app.get('/pets/:id', async function(req, res) {
 
-    await Mascot.create(req.body);
+    let data = await Pet.findByPk(req.params.id);
+
+    res.send(data);
+});
+
+app.post('/pets', async function (req, res) {
+
+    await Pet.create(req.body);
 
     res.send('creado');
 })

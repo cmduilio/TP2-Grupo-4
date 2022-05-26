@@ -4,10 +4,10 @@ const {randBetweenDate, randBird, randDog, randCat, randFirstName, randBoolean, 
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    let mascots = [];
+    let pets = [];
 
     for(let i = 0; i < 30; i++){
-      mascots.push({
+      pets.push({
         animal: "perro",
         race: randDog(),
         name: randFirstName(),
@@ -23,7 +23,7 @@ module.exports = {
     }
 
     for(let i = 0; i < 30; i++){
-      mascots.push({
+      pets.push({
         animal: "gato",
         race: randCat(),
         name: randFirstName(),
@@ -39,7 +39,7 @@ module.exports = {
     }
 
     for(let i = 0; i < 10; i++){
-      mascots.push({
+      pets.push({
         animal: "otro",
         race: randBird(),
         name: randFirstName(),
@@ -54,13 +54,13 @@ module.exports = {
       });
     }
 
-    await queryInterface.bulkInsert('mascots', mascots, {});
+    await queryInterface.bulkInsert('pets', pets, {});
 
   },
 
   async down (queryInterface, Sequelize) {
   
-    await queryInterface.bulkDelete('mascots', null, {});
+    await queryInterface.bulkDelete('pets', null, {});
 
   }
 };
