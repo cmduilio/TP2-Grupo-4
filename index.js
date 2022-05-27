@@ -9,7 +9,16 @@ app.get('/', function(req, res) {
 
 app.get('/pets', async function(req, res) {
 
-    let data = await Pet.findAll({limit: 20});
+    let q = {};
+
+    if(req.query.userId){
+        q.userId = req.query.userId;
+    };
+
+    let data = await Pet.findAll({
+        where : q,
+        limit: 20
+    });
 
     res.send(data);
 });
@@ -26,6 +35,6 @@ app.post('/pets', async function (req, res) {
     await Pet.create(req.body);
 
     res.send('creado');
-})
+});
 
 app.listen(8001);
