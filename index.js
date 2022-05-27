@@ -1,10 +1,10 @@
 const express = require('express');
 const app = express();
-
 app.use(express.json())
 
-const {Request} = require('./src/db/models');
-const {User} = require('./src/db/models')
+const {Request, User, Pet} = require('./src/db/models');
+
+app.listen('8000');
 
 app.get('/', function(req, res){
 
@@ -67,4 +67,33 @@ app.post('/requests', async function(req,res){
 
     res.send(req.body);
 })
-app.listen(6001);
+
+app.get('/pets', async function(req, res) {
+
+    let q = {};
+
+    if(req.query.userId){
+        q.userId = req.query.userId;
+    };
+
+    let data = await Pet.findAll({
+        where : q,
+        limit: 20
+    });
+
+    res.send(data);
+});
+
+app.get('/pets/:id', async function(req, res) {
+
+    let data = await Pet.findByPk(req.params.id);
+
+    res.send(data);
+});
+
+app.post('/pets', async function (req, res) {
+
+    await Pet.create(req.body);
+
+    res.send('creado');
+});
