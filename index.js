@@ -56,6 +56,19 @@ app.get('/users/:id', async function(req, res){
           })
       })
 
+    //actualizar Email
+
+    app.get('/users/:id/changeemail/:newEmail', async function(req, res){
+
+        await User.update({
+            email : req.params.newEmail
+          },
+          {
+           where : {id : req.params.id}   
+          
+          })
+      })
+
 
 app.get('/user-create', async function(req, res){
 
