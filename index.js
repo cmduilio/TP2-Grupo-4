@@ -96,6 +96,20 @@ app.get('/users/:id', async function(req, res){
       })
 
 
+    //actualizar Requerimientos
+
+    app.get('/users/:id/changerequise/:newRequise', async function(req, res){
+
+        await User.update({
+            requise : req.params.newRequise
+          },
+          {
+           where : {id : req.params.id}   
+          
+          })
+      })
+
+
 app.get('/user-create', async function(req, res){
 
     await User.create({
