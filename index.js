@@ -69,6 +69,19 @@ app.get('/users/:id', async function(req, res){
           })
       })
 
+    //actualizar Direccion
+
+    app.get('/users/:id/changeaddress/:newAddress', async function(req, res){
+
+        await User.update({
+            address : req.params.newAddress
+          },
+          {
+           where : {id : req.params.id}   
+          
+          })
+      })
+
 
 app.get('/user-create', async function(req, res){
 
