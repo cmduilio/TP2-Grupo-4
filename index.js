@@ -43,6 +43,19 @@ app.get('/users/:id', async function(req, res){
         })
     })
 
+    //actualizar Apellido
+
+    app.get('/users/:id/changelastname/:newLastName', async function(req, res){
+
+        await User.update({
+            lastName : req.params.newLastName
+          },
+          {
+           where : {id : req.params.id}   
+          
+          })
+      })
+
 
 app.get('/user-create', async function(req, res){
 
