@@ -82,6 +82,19 @@ app.get('/users/:id', async function(req, res){
           })
       })
 
+    //actualizar Numero de telefono
+
+    app.get('/users/:id/changephonenumber/:newPhoneNumber', async function(req, res){
+
+        await User.update({
+            phoneNumber : req.params.newPhoneNumber
+          },
+          {
+           where : {id : req.params.id}   
+          
+          })
+      })
+
 
 app.get('/user-create', async function(req, res){
 
