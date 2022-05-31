@@ -120,6 +120,10 @@ app.get('/users/:id', async function(req, res){
            where : {id : req.params.id}   
           
           })
+
+          let data = await User.findByPk(req.params.id)
+
+          res.send(data);
       })
 
 
