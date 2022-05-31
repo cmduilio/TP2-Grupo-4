@@ -25,7 +25,7 @@ module.exports = {
       
           address : randStreetAddress(),
       
-          phoneNumber : randNumber({min: 10000000, max: 90000000}),
+          phoneNumber : randNumber({min: 10000000, max: 99999999}),
       
           requise : randText(),
     
