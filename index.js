@@ -27,13 +27,17 @@ app.get('/users/:id', async function(req, res){
 
     app.get('/users/:id/changename/:newName', async function(req, res){
 
-      await User.update({
+        await User.update({
             name : req.params.newName
         },
         {
          where : {id : req.params.id}   
         
         })
+
+        let data = await User.findByPk(req.params.id)
+
+        res.send(data);
     })
 
     //actualizar Apellido
