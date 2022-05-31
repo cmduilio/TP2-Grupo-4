@@ -23,13 +23,6 @@ app.get('/users/:id', async function(req, res){
     res.send(data);
     })
 
-    app.get('/users/:id', async function(req, res){
-
-        let data = await User.findByPk(req.params.id)
-    
-        res.send(data);
-    })
-
     //actualizar Nombre
 
     app.get('/users/:id/changename/:newName', async function(req, res){
