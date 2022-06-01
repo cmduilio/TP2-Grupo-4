@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
-app.use(express.json())
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+const {Pet} = require('./src/db/models');
 
 const {Request, User, Pet} = require('./src/db/models');
 
@@ -93,7 +95,13 @@ app.get('/pets/:id', async function(req, res) {
 
 app.post('/pets', async function (req, res) {
 
-    await Pet.create(req.body);
+    if(req.body.age > 3 && !req.body.isVaccinated){
+       return res.status(422).json({mensaje: 'VACC_REQUIRED'});
+    }
 
-    res.send('creado');
+    await Pet.create(req.body)
+        .then(data => {res.status(201).json({})})
+            .catch(err => {res.status(422).json(err)})
 });
+
+app.listen(8001);
