@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Pet.belongsTo(models.User)
+      Pet.belongsTo(models.User, {foreignKey : "userId"});
     }
   }
   Pet.init({ 
@@ -75,6 +75,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW
     },
+
+    userId: {
+      type: DataTypes.NUMBER,
+      allowNull: false
+    }
     
   }, {
     sequelize,
