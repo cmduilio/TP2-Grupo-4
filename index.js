@@ -1,15 +1,12 @@
 const express = require('express');
 const app = express();
 
+const {User} = require('./src/db/models');
+const RequestController = require('./src/controllers/RequestController');
+
 app.use(express.json())
 
-const {Request} = require('./src/db/models');
-const {User} = require('./src/db/models')
-
-app.get('/', function(req, res){
-
-    res.send('hello123');
-})
+app.use(RequestController);
 
 app.get('/users', async function(req, res){
 
@@ -50,21 +47,4 @@ app.get('/user-create', async function(req, res){
     res.send("Create")
 });
 
-app.get('/requests', async function(req,res){
-    let data = await Request.findAll();
-    res.send(data);
-})
-
-app.get('/requests/:id', async function(req,res){
-    let data = await Request.findByPk(req.params.id);
-
-    res.send(data);
-})
-
-app.post('/requests', async function(req,res){
-    console.log(req.body)
-    await Request.create(req.body);
-
-    res.send(req.body);
-})
 app.listen(6001);
