@@ -2,7 +2,13 @@ const express = require('express');
 
 const app = express();
 
- const {User} = require('./src/db/models')
+//commit
+
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
+ const {User} = require('./src/db/models');
+const user = require('./src/db/models/user');
 
 app.get('/', function(req, res){
 
@@ -23,7 +29,7 @@ app.get('/users/:id', async function(req, res){
     res.send(data);
     })
 
-    //actualizar Nombre
+    //borrar
 
     app.get('/users/:id/changename/:newName', async function(req, res){
 
@@ -40,7 +46,7 @@ app.get('/users/:id', async function(req, res){
         res.send(data);
     })
 
-    //actualizar Apellido
+    //borrar
 
     app.get('/users/:id/changelastname/:newLastName', async function(req, res){
 
@@ -57,8 +63,7 @@ app.get('/users/:id', async function(req, res){
           res.send(data);
       })
 
-    //actualizar Email
-
+    //commitear borrar
     app.get('/users/:id/changeemail/:newEmail', async function(req, res){
 
         await User.update({
@@ -74,7 +79,31 @@ app.get('/users/:id', async function(req, res){
           res.send(data);
       })
 
-    //actualizar Direccion
+    //commitear
+
+        app.patch('/users/:id',(req,res)=>{           
+
+            let option = {where : {id : req.params.id}};
+            let setData = req.body;
+
+             User.update(setData,                          
+                options
+                ).then(User =>{
+
+                 if(User){
+                     res.status(200).json(User);
+                 }else{
+                     res.status(404).json({message : "Record not found"});
+                 }
+             }).catch(err => {
+                    
+                 res.status(500).json({message : "Error updating"})
+             })
+               
+ 
+        });
+
+        //borrar
 
     app.get('/users/:id/changeaddress/:newAddress', async function(req, res){
 
@@ -91,7 +120,7 @@ app.get('/users/:id', async function(req, res){
           res.send(data);
       })
 
-    //actualizar Numero de telefono
+    //borrar
 
     app.get('/users/:id/changephonenumber/:newPhoneNumber', async function(req, res){
 
@@ -109,7 +138,7 @@ app.get('/users/:id', async function(req, res){
       })
 
 
-    //actualizar Requerimientos
+    //borrar
 
     app.get('/users/:id/changerequise/:newRequise', async function(req, res){
 
@@ -126,6 +155,8 @@ app.get('/users/:id', async function(req, res){
           res.send(data);
       })
 
+
+      //borrar
 
 app.get('/user-create', async function(req, res){
 
