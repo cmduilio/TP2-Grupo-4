@@ -70,4 +70,30 @@ describe('Request', () => {
             done();
         });
     });
+
+    it('returns top 3 requests', (done) =>{
+        axios({
+            method: 'get',
+            url: 'http://localhost:8001/requests-count-best',
+        })
+        .then(data => {
+            assert.isTrue(data.data.length > 0)
+            assert.isTrue(data.data[0] >= data.data[1])
+            assert.isTrue(data.data[1] >= data.data[2])
+            done();
+        });
+    });
+
+    it('returns top 3 requests', (done) =>{
+        axios({
+            method: 'get',
+            url: 'http://localhost:8001/requests-count-worst',
+        })
+        .then(data => {
+            assert.isTrue(data.data.length > 0)
+            assert.isTrue(data.data[0] <= data.data[1])
+            assert.isTrue(data.data[1] <= data.data[2])
+            done();
+        });
+    });
 });
