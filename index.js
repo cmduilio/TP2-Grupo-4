@@ -6,8 +6,6 @@ app.use(express.urlencoded({ extended: true }))
 const { User, Pet } = require('./src/db/models');
 const RequestController = require('./src/controllers/RequestController');
 
-app.listen('8000');
-
 app.use(express.json())
 
 app.use(RequestController);
