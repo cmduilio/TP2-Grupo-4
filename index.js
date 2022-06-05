@@ -30,7 +30,7 @@ app.patch('/users/:id/updateuser', (req, res) => {
     let setData = req.body;
 
     User.update(setData,
-        options
+        option
     ).then(User => {
 
         if (User) {
