@@ -1,7 +1,7 @@
 var express = require('express')
 var router = express.Router()
 
-const { Request } = require('../db/models');
+const { Request, sequelize } = require('../db/models');
 
 router.get('/requests', async function (req, res) {
     let data = await Request.findAll();
@@ -32,6 +32,29 @@ router.post('/requests', async function (req, res) {
     })
     .catch(err => {
         res.status(422).json(errorResponse)
+    });
+})
+
+//TODO DUILIO: esto deberia hacerse con un join a tabla pets, no tiene en cuenta los que no tienen solicitudes
+router.get('/requests-count-best', async function (req, res) {
+    await Request.findAll({
+        group: ['idMascot'],
+        attributes: ['idMascot', [sequelize.fn('COUNT', 'id'), 'count']],
+        order: [[sequelize.literal('count'), 'desc']],
+        limit: 3
+    }).then(data =>{
+        res.status(200).send(data);
+    });
+})
+
+router.get('/requests-count-worst', async function (req, res) {
+    await Request.findAll({
+        group: ['idMascot'],
+        attributes: ['idMascot', [sequelize.fn('COUNT', 'id'), 'count']],
+        order: [[sequelize.literal('count'), 'asc']],
+        limit: 3
+    }).then(data =>{
+        res.status(200).send(data);
     });
 })
 
