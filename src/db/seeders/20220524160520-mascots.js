@@ -17,6 +17,7 @@ module.exports = {
         isVaccinated: randBoolean(),
         isCastrated: randBoolean(),
         comment: randText(),
+        userId: randNumber({min: 1, max: 1000}),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
         updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
       });
@@ -33,6 +34,7 @@ module.exports = {
         isVaccinated: randBoolean(),
         isCastrated: randBoolean(),
         comment: randText(),
+        userId: randNumber({min: 1, max: 1000}),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
         updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
       });
@@ -49,6 +51,7 @@ module.exports = {
         isVaccinated: randBoolean(),
         isCastrated: randBoolean(),
         comment: randText(),
+        userId: randNumber({min: 1, max: 1000}),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
         updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
       });
