@@ -108,4 +108,36 @@ describe('Update user', () => {
         })
     });
 
+
+    it('returns 400 if update with only empty attributes is fail', (done)=> {
+        const userid = 5    
+        const user = {
+            name: "     ",
+            lastName: "   ",
+            email: "   \n  ",
+            address: " \r\n ",
+            requise: ""
+        };
+
+        axios({
+            method: "patch",
+            ///!!! Pendiente de cambio: "/users/:id"
+            url: `http://localhost:6001/users/${userid}/updateuser`,
+            data: user,
+        }).then(response => {
+            assert.equal(response.status, 400);   ///aqui solo llegas a recibir las respuestas 200 a 300
+            done();
+        }).catch(err => {
+            if(Object.keys(err).includes("response"))   /// Si error contiene respuesta significa que viene directo del servidor y no del .then
+            {
+                assert.equal(err.response.status, 400); 
+                done();
+            }
+            else done(err);  /// por aqui se despachan las respuestas que fueron 200 o 300
+        }).catch(err => {
+            done(err);
+        })
+    });
+
+
 })
