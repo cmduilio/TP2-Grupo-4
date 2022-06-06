@@ -36,6 +36,9 @@ app.post('/pets', async function (req, res) {
     if(req.body.age > 3 && !req.body.isVaccinated){
        return res.status(422).json({mensaje: 'VACC_REQUIRED'});
     }
+    if(req.body.age <= 5 && !req.body.isCastrated){
+        return res.status(422).json({mensaje: 'NEUT_REQUIRED'});
+    }
 
     await Pet.create(req.body)
         .then(data => {res.status(201).json({})})

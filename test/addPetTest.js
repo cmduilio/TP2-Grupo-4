@@ -53,6 +53,29 @@ describe('Add Pet', () => {
             assert.equal(err.response.status, 422);
             done();
         })
-    })
+    });
+
+    it('returns 422 if neutering is required', (done)=> {
+        
+        axios({
+            method: "post",
+            url: 'http://localhost:8001/pets',
+            data: {
+                animal: "perro",
+                race: "no aplica",
+                name: "roco",
+                size: "grande",
+                age: 4,
+                looksForOwner: true,
+                isVaccinated: false,
+                isCastrated: false,
+                comment: "come mucho",
+                userId: 4
+            }
+        }).catch(err => {
+            assert.equal(err.response.status, 422);
+            done();
+        })
+    });
 })
 
