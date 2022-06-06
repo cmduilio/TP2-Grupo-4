@@ -83,4 +83,29 @@ describe('Update user', () => {
         })
     });
 
+
+    it('returns 400 if update with empty body is fail', (done)=> {
+        const userid = 4    
+        const user = {};
+
+        axios({
+            method: "patch",
+            ///!!! Pendiente de cambio: "/users/:id"
+            url: `http://localhost:6001/users/${userid}/updateuser`,
+            data: user,
+        }).then(response => {
+            assert.equal(response.status, 400);
+            done();
+        }).catch(err => {
+            if(Object.keys(err).includes("response")) 
+            {
+                assert.equal(err.response.status, 400); 
+                done();
+            }
+            else done(err);
+        }).catch(err => {
+            done(err);
+        })
+    });
+
 })
