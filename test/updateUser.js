@@ -140,4 +140,34 @@ describe('Update user', () => {
     });
 
 
+    const methods = ["get", "post", "put", "delete"];
+    for(let f_method of methods){
+        it(`returns 404 if update with ${f_method} methods fail`, (done)=> {
+            const userid = 6    
+            const user = {
+                name: f_method
+            };
+                axios({
+                    method: f_method,
+                    ///!!! Pendiente de cambio: "/users/:id"
+                    url: `http://localhost:6001/users/${userid}/updateuser`,
+                    data: user,
+                }).then(response => {
+                    assert.equal(response.status, 404);
+                    done();
+                }).catch(err => {
+                    if(Object.keys(err).includes("response")) 
+                    {
+                        assert.equal(err.response.status, 404); 
+                        done();
+                    }
+                    else done(err);
+                }).catch(err => {
+                    done(err);
+                })
+            
+        });
+    }
+
+
 })
