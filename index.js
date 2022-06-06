@@ -24,9 +24,7 @@ app.get('/users/:id', async function (req, res) {
     res.send(data);
 })
 
-//dps lo corrijo, xq tengo que hacer el commiteo bla bla - lo dejamos asi tambien en el test. pero se marca como pendiente de cambio
 
-///!!! Pendiente de cambio: "/users/:id"
 app.patch('/users/:id/updateuser', (req, res) => {
 
     let option = { where: { id: req.params.id } };
