@@ -6,7 +6,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     let pets = [];
 
-    for(let i = 0; i < 30; i++){
+    for(let i = 0; i < 300; i++){
       pets.push({
         animal: "perro",
         race: randDog(),
@@ -23,7 +23,7 @@ module.exports = {
       });
     }
 
-    for(let i = 0; i < 30; i++){
+    for(let i = 0; i < 300; i++){
       pets.push({
         animal: "gato",
         race: randCat(),
@@ -40,7 +40,7 @@ module.exports = {
       });
     }
 
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 400; i++){
       pets.push({
         animal: "otro",
         race: randBird(),
