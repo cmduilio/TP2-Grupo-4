@@ -2,10 +2,9 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
-
 const {Request, User, Pet} = require('./src/db/models');
 
-app.listen('8000');
+app.listen(6001);
 
 app.get('/', function(req, res){
 
@@ -140,4 +139,4 @@ app.post('/pets', async function (req, res) {
             .catch(err => {res.status(422).json(err)})
 });
 
-app.listen(6001);
+
