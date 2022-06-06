@@ -24,28 +24,25 @@ app.get('/users/:id', async function (req, res) {
     res.send(data);
 })
 
+//dps lo corrijo, xq tengo que hacer el commiteo bla bla - lo dejamos asi tambien en el test. pero se marca como pendiente de cambio
+
+///!!! Pendiente de cambio: "/users/:id"
 app.patch('/users/:id/updateuser', (req, res) => {
 
     let option = { where: { id: req.params.id } };
     let setData = req.body;
 
-    User.update(setData,
-        option
-    ).then(User => {
-
-        if (User) {
-            res.status(200).json(User);
-        } else {
-            res.status(404).json({ message: "Record not found" });
+    for(let i in setData){ 
+        if((/^\s*$/i).test(setData[i])){   
+            delete setData[i];
         }
-    }).catch(err => {
+    }
 
-        res.status(500).json({ message: "Error updating" })
-    })
+
 });
 
 app.get('/user-create', async function (req, res) {
-
+///test?
     await User.create({
 
         userName: "Carlox",
