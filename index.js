@@ -38,6 +38,28 @@ app.patch('/users/:id/updateuser', (req, res) => {
         }
     }
 
+    if(Object.keys(setData).length === 0)
+    {
+        res.status(400).json({ message: "Request can't be empty" });
+    }
+    else if(setData.hasOwnProperty("id") || setData.hasOwnProperty("username") || setData.hasOwnProperty("password"))
+    {
+        res.status(400).json({ message: "Request can't be contain id, username or password on updating" });  
+    }
+    else{
+        User.update(setData,
+            option
+        ).then(User => {
+            if (User) {
+                res.status(201).json(User);
+            } else {
+                res.status(400).json({ message: "Record not found" });
+            }
+        }).catch(err => {
+            res.status(500).json({ message: "Error updating" });
+        })
+    }
+
 
 });
 
