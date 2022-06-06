@@ -5,8 +5,6 @@ app.use(express.urlencoded({extended: true}))
 
 const {Request, User, Pet} = require('./src/db/models');
 
-app.listen('8000');
-
 app.get('/', function(req, res){
 
     res.send('hello123');
@@ -101,6 +99,23 @@ app.post('/pets', async function (req, res) {
     await Pet.create(req.body)
         .then(data => {res.status(201).json({})})
             .catch(err => {res.status(422).json(err)})
+});
+
+app.patch('/pets/:id/update', async function (req, res) {
+
+    let data = await Pet.findByPk(req.params.id);
+
+    if(data.animal !== req.body.animal){
+        console.log(data);
+        console.log('hola');
+        return res.status(422).json({mensaje: 'ANIMALTYPE_CANNOT_BE_MODIFIED'});
+    }
+
+    await Pet.update(
+        req.body,
+        {where: {id: req.params.id}})
+            .then(data => {res.status(201).json({})})
+                .catch(err => {res.status(422).json(err)})
 });
 
 app.listen(8001);
