@@ -140,4 +140,4 @@ app.post('/pets', async function (req, res) {
             .catch(err => {res.status(422).json(err)})
 });
 
-app.listen(8001);
+app.listen(6001);
