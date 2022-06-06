@@ -12,16 +12,16 @@ describe('Add Pet', () => {
             method: "post",
             url: 'http://localhost:8001/pets',
             data: {
-                animal: "perro",
-                race: "no aplica",
-                name: "rin",
-                size: "grande",
-                age: 1,
+                animal: "otro",
+                race: "canario",
+                name: "tilin",
+                size: "chico",
+                age: 2,
                 looksForOwner: true,
-                isVaccinated: true,
+                isVaccinated: false,
                 isCastrated: true,
-                comment: "come mucho",
-                userId: 4
+                comment: "come poco",
+                userId: 11
             }
         }).then(response => {
             // testeo
@@ -71,6 +71,29 @@ describe('Add Pet', () => {
                 isCastrated: false,
                 comment: "come mucho",
                 userId: 4
+            }
+        }).catch(err => {
+            assert.equal(err.response.status, 422);
+            done();
+        })
+    });
+
+    it('returns 422 if pet already exists', (done)=> {
+        
+        axios({
+            method: "post",
+            url: 'http://localhost:8001/pets',
+            data: {
+                animal: "perro",
+                race: "golden",
+                name: "coco",
+                size: "mediano",
+                age: 11,
+                looksForOwner: true,
+                isVaccinated: true,
+                isCastrated: true,
+                comment: "juega",
+                userId: 1
             }
         }).catch(err => {
             assert.equal(err.response.status, 422);
