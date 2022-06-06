@@ -8,9 +8,9 @@ module.exports = {
     for (var i = 0; i < 1000; ++i)
     {
       requests.push({
-        idOwner: randNumber({min: 1, max: 999999}),
-        idMascot: randNumber({min: 1, max: 999999}),
-        idRequester: randNumber({min: 1, max: 999999}),
+        idOwner: randNumber({min: 1, max: 1000}),
+        idMascot: randNumber({min: 1, max: 1000}),
+        idRequester: randNumber({min: 1, max: 1000}),
         status: 'open',
         createdAt: new Date,
         updatedAt: new Date,
