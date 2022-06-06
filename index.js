@@ -62,6 +62,14 @@ app.patch('/users/:id/updateuser', (req, res) => {
 
 });
 
+app.put('/accept-request/:id', async function(req, res){
+
+
+
+
+
+})
+
 app.get('/user-create', async function (req, res) {
 ///test?
     await User.create({
