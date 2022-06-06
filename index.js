@@ -104,16 +104,16 @@ app.post('/pets', async function (req, res) {
 app.patch('/pets/:id/update', async function (req, res) {
 
     let data = await Pet.findByPk(req.params.id);
-
-    if(data.animal !== req.body.animal){
-        console.log(data);
-        console.log('hola');
-        return res.status(422).json({mensaje: 'ANIMALTYPE_CANNOT_BE_MODIFIED'});
+    
+    if(req.body.animal){
+        if(data.animal !== req.body.animal){
+            return res.status(422).json({mensaje: 'ANIMALTYPE_CANNOT_BE_MODIFIED'});
+        }
     }
 
     await Pet.update(
         req.body,
-        {where: {id: req.params.id}})
+        {where: {id: data.id}})
             .then(data => {res.status(201).json({})})
                 .catch(err => {res.status(422).json(err)})
 });

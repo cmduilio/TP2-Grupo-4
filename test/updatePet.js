@@ -10,9 +10,9 @@ describe('Add Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/3/update',
+            url: 'http://localhost:8001/pets/4/update',
             data: {
-                name: 'Rocco',
+                name: "Firulais",
             }
         }).then(response => {
             // testeo
@@ -27,9 +27,9 @@ describe('Add Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/3/update',
+            url: 'http://localhost:8001/pets/40/update',
             data: {
-                animal: 'gato',
+                animal: "perro",
             }
         }).catch(err => {
             assert.equal(err.response.status, 422);
