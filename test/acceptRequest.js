@@ -27,6 +27,31 @@ describe('Accept Request', () => {
          })
  });
 
+ it('returns 400 when request is already accepted or cancel', (done)=> {
+           
+    const requestId = 7;   // deberia ser dinamico
+    const body ={ requestKey: 619+673 };  
+
+     axios({
+         method: "put",
+         url: `http://localhost:6001/accept-request/${requestId}`,
+         data: body
+         
+     }).then(response => {
+         assert.equal(response.status, 400);
+         done();
+     }).catch(err => {
+        if(Object.keys(err).includes("response"))
+        {
+            assert.equal(err.response.status, 400); 
+            done();
+        }
+        else done(err);
+    }).catch(err => { 
+        done(err);
+    })
+});
+
 
 
 })
