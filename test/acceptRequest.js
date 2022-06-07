@@ -155,6 +155,36 @@ it('returns 400 if request isn\'t exist', (done)=> {
 });
 
 
+const methods = ["get", "post", "patch", "delete"];
+for(let f_method of methods){
+    it(`returns 404 if accept with ${f_method} methods fail`, (done)=> {
+
+        const requestId = 9;   // deberia ser dinamico
+        const body ={ requestKey: 690+388 };  
+
+        axios({
+            method: f_method,
+            url: `http://localhost:6001/accept-request/${requestId}`,
+            data: body
+         
+        }).then(response => {
+                assert.equal(response.status, 404);
+                done();
+        }).catch(err => {
+                if(Object.keys(err).includes("response")) 
+                {
+                    assert.equal(err.response.status, 404); 
+                    done();
+                }
+                else done(err);
+        }).catch(err => {
+                done(err);
+        })
+        
+    });
+}
+
+
 
 
 })
