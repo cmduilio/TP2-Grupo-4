@@ -81,6 +81,43 @@ app.put('/accept-request/:id', async function(req, res){
         return;
     }
 
+    else if((request.idOwner + request.idMascot) !== key ){
+        res.status(400).json({ message: "Bad Key" }).send();
+        return;
+    }
+    else if(request.status !== "open" ){
+        res.status(400).json({ message: "Request are already accepted" }).send();
+        return;
+    }
+
+    let modified = 
+    await Request.update
+    (
+        {status: "accepted"}, 
+        { where: { id: idRequest } }
+
+    ).catch(err => { res.status(500).json({ message: "Error updating" }).send(); });
+
+
+    if (!modified){
+        res.status(400).json({ message: "It can't be modified" }).send();
+        return;
+    }
+
+    modified = 
+    await Pet.update(
+        {userId: request.idRequester},
+        { where: { id: request.idMascot } }
+
+    ).catch(err => { res.status(500).json({ message: "Error updating" }).send(); });
+
+    if (!modified){
+        res.status(400).json({ message: "Pet not found" }).send();
+        return;
+    }
+    
+    res.status(201).send("Actualizacion completa");
+
 
 })
 
