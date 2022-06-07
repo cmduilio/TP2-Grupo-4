@@ -71,6 +71,17 @@ app.put('/accept-request/:id', async function(req, res){
         return;
     }
 
+    let idRequest = req.params.id;
+    let key = req.body.requestKey;   //obtenemos la llave de permiso
+    
+    let request = await Request.findByPk(idRequest);
+
+    if(!request){
+        res.status(400).json({ message: "Record not found" });
+        return;
+    }
+
+
 })
 
 app.get('/requesttest/:id', async function(req, res){
