@@ -1,4 +1,5 @@
 const express = require('express');
+const { get } = require('express/lib/response');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
@@ -63,11 +64,27 @@ app.patch('/users/:id/updateuser', (req, res) => {
 });
 
 app.put('/accept-request/:id', async function(req, res){
+    
+    
+    if(Object.keys(req.body).length !== 1 || !Object.keys(req.body).includes('requestKey')){
+        res.status(400).json({ message: "Bad request" }).send();
+        return;
+    }
 
+})
 
+app.get('/requesttest/:id', async function(req, res){
 
+    let valor =
+        await Request.findAll({
+            where: {
+                id : req.params.id 
+            },
+            attributes: ['idMascot']
+        });
 
-
+        res.send(valor);
+    
 })
 
 app.get('/user-create', async function (req, res) {
