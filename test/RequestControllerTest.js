@@ -53,7 +53,6 @@ describe('Request', () => {
         });
     });
 
-    //TODO DUILIO: por alguna razon esto devuelve error pero crea el objeto en base
     it.skip('return created request', (done) =>{
         axios({
             method: 'post',
@@ -71,7 +70,7 @@ describe('Request', () => {
         });
     });
 
-    it('returns top 3 requests', (done) =>{
+    it('returns top 3 pets', (done) =>{
         axios({
             method: 'get',
             url: 'http://localhost:8001/requests-count-best',
@@ -84,7 +83,7 @@ describe('Request', () => {
         });
     });
 
-    it('returns top 3 requests', (done) =>{
+    it('returns worst 3 pets', (done) =>{
         axios({
             method: 'get',
             url: 'http://localhost:8001/requests-count-worst',
