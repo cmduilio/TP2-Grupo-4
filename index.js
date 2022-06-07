@@ -86,6 +86,7 @@ app.get('/pets', async function(req, res) {
 app.get('/pets/:id', async function(req, res) {
 
     let data = await Pet.findByPk(req.params.id);
+    
 
     res.send(data);
 });
@@ -101,10 +102,15 @@ app.post('/pets', async function (req, res) {
             .catch(err => {res.status(422).json(err)})
 });
 
-app.patch('/pets/:id/update', async function (req, res) {
+app.patch('/pets/:id/user/:userId', async function (req, res) {
 
-    let data = await Pet.findByPk(req.params.id);
+    let data = await Pet.findOne({ where: {
+        id: req.params.id,
+        userId :  req.params.userId} });
     
+    if(data == null){
+        return res.status(422).json({mensaje: 'ANIMAL_NOT_FOUND'});
+    }    
     if(req.body.animal){
         if(data.animal !== req.body.animal){
             return res.status(422).json({mensaje: 'ANIMALTYPE_CANNOT_BE_MODIFIED'});
