@@ -11,7 +11,7 @@ describe('Accept Request', () => {
 
     it('returns 201 if request is accepted', (done)=> {
            
-        const requestId = 7;   // deberia ser dinamico
+        const requestId = 7;   
         const body ={ requestKey: 619+673 };  
 
          axios({
@@ -29,7 +29,7 @@ describe('Accept Request', () => {
 
  it('returns 400 when request is already accepted or cancel', (done)=> {
            
-    const requestId = 7;   // deberia ser dinamico
+    const requestId = 7;   
     const body ={ requestKey: 619+673 };  
 
      axios({
@@ -54,7 +54,7 @@ describe('Accept Request', () => {
 
 it('returns 400 if request is rejected by bad Key', (done)=> {
            
-    const requestId = 9;   // deberia ser dinamico
+    const requestId = 9;   
     const body ={ requestKey: 690-388 };  
 
      axios({
@@ -80,7 +80,7 @@ it('returns 400 if request is rejected by bad Key', (done)=> {
 
 it('returns 400 if request is rejected by a empty body', (done)=> {
            
-    const requestId = 9;   // deberia ser dinamico
+    const requestId = 9;  
     const body ={};  
 
      axios({
@@ -106,7 +106,7 @@ it('returns 400 if request is rejected by a empty body', (done)=> {
 
 it('returns 400 if request is rejected by a bad body', (done)=> {
            
-    const requestId = 9;   // deberia ser dinamico
+    const requestId = 9;  
     const body ={ cualquierCosa: "is good", requestKey: 690+388 };  
 
      axios({
@@ -131,7 +131,7 @@ it('returns 400 if request is rejected by a bad body', (done)=> {
 
 it('returns 400 if request isn\'t exist', (done)=> {
            
-    const requestId = -9;   // deberia ser dinamico
+    const requestId = -9;   
     const body ={ requestKey: 690+388 };  
 
      axios({
@@ -159,7 +159,7 @@ const methods = ["get", "post", "patch", "delete"];
 for(let f_method of methods){
     it(`returns 404 if accept with ${f_method} methods fail`, (done)=> {
 
-        const requestId = 9;   // deberia ser dinamico
+        const requestId = 9;   
         const body ={ requestKey: 690+388 };  
 
         axios({
