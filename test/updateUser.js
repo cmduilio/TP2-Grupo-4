@@ -22,8 +22,7 @@ describe('Update user', () => {
         
         axios({
             method: "patch",
-            ///!!! Pendiente de cambio: "/users/:id"
-            url: `http://localhost:6001/users/${userid}/updateuser`,
+            url: `http://localhost:6001/users/${userid}`,
             data: user
             
         }).then(response => {
@@ -44,8 +43,7 @@ describe('Update user', () => {
 
         axios({
             method: "patch",
-            ///!!! Pendiente de cambio: "/users/:id"
-            url: `http://localhost:6001/users/${userid}/updateuser`,
+            url: `http://localhost:6001/users/${userid}`,
             data: user,
             
         }).then(response => {
@@ -65,8 +63,7 @@ describe('Update user', () => {
 
         axios({
             method: "patch",
-            ///!!! Pendiente de cambio: "/users/:id"
-            url: `http://localhost:6001/users/${userid}/updateuser`,
+            url: `http://localhost:6001/users/${userid}`,
             data: user,
         }).then(response => {
             assert.equal(response.status, 400);
@@ -90,8 +87,7 @@ describe('Update user', () => {
 
         axios({
             method: "patch",
-            ///!!! Pendiente de cambio: "/users/:id"
-            url: `http://localhost:6001/users/${userid}/updateuser`,
+            url: `http://localhost:6001/users/${userid}`,
             data: user,
         }).then(response => {
             assert.equal(response.status, 400);
@@ -121,8 +117,7 @@ describe('Update user', () => {
 
         axios({
             method: "patch",
-            ///!!! Pendiente de cambio: "/users/:id"
-            url: `http://localhost:6001/users/${userid}/updateuser`,
+            url: `http://localhost:6001/users/${userid}`,
             data: user,
         }).then(response => {
             assert.equal(response.status, 400);   ///aqui solo llegas a recibir las respuestas 200 a 300
@@ -149,8 +144,7 @@ describe('Update user', () => {
             };
                 axios({
                     method: f_method,
-                    ///!!! Pendiente de cambio: "/users/:id"
-                    url: `http://localhost:6001/users/${userid}/updateuser`,
+                    url: `http://localhost:6001/users/${userid}`,
                     data: user,
                 }).then(response => {
                     assert.equal(response.status, 404);
