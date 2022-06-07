@@ -18,7 +18,8 @@ module.exports = {
         isCastrated: randBoolean(),
         comment: randText(),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
-        updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
+        updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
+        userId: randNumber({min: 1, max: 50}),
       });
     }
 
@@ -34,7 +35,8 @@ module.exports = {
         isCastrated: randBoolean(),
         comment: randText(),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
-        updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
+        updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
+        userId: randNumber({min: 1, max: 50}),
       });
     }
 
@@ -50,7 +52,8 @@ module.exports = {
         isCastrated: randBoolean(),
         comment: randText(),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
-        updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
+        updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
+        userId: randNumber({min: 1, max: 50}),
       });
     }
 
