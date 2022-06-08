@@ -6,7 +6,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     let pets = [];
 
-    for(let i = 0; i < 30; i++){
+    for(let i = 0; i < 300; i++){
       pets.push({
         animal: "perro",
         race: randDog(),
@@ -17,13 +17,14 @@ module.exports = {
         isVaccinated: randBoolean(),
         isCastrated: randBoolean(),
         comment: randText(),
+        userId: randNumber({min: 1, max: 1000}),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
         updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
         userId: randNumber({min: 1, max: 50}),
       });
     }
 
-    for(let i = 0; i < 30; i++){
+    for(let i = 0; i < 300; i++){
       pets.push({
         animal: "gato",
         race: randCat(),
@@ -34,13 +35,14 @@ module.exports = {
         isVaccinated: randBoolean(),
         isCastrated: randBoolean(),
         comment: randText(),
+        userId: randNumber({min: 1, max: 1000}),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
         updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
         userId: randNumber({min: 1, max: 50}),
       });
     }
 
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 400; i++){
       pets.push({
         animal: "otro",
         race: randBird(),
@@ -51,6 +53,7 @@ module.exports = {
         isVaccinated: randBoolean(),
         isCastrated: randBoolean(),
         comment: randText(),
+        userId: randNumber({min: 1, max: 1000}),
         createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
         updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
         userId: randNumber({min: 1, max: 50}),
