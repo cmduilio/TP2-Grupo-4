@@ -74,8 +74,27 @@ app.get('/pets/:id', async function (req, res) {
 
 app.post('/pets', async function (req, res) {
 
-    if (req.body.age > 3 && !req.body.isVaccinated) {
-        return res.status(422).json({ mensaje: 'VACC_REQUIRED' });
+    let data = await Pet.findOne(
+        {where: {
+            animal: req.body.animal,
+            race: req.body.race,
+            name: req.body.name,
+            size: req.body.size,
+            age: req.body.age,
+            looksForOwner: req.body.looksForOwner,
+            isVaccinated: req.body.isVaccinated,
+            isCastrated: req.body.isCastrated,
+            userId: req.body.userId
+    }});
+    
+    if(data){
+        return res.status(422).json({mensaje: 'PET_EXISTS'});
+    }
+    if(req.body.age > 3 && !req.body.isVaccinated){
+       return res.status(422).json({mensaje: 'VACC_REQUIRED'});
+    }
+    if(req.body.age <= 5 && !req.body.isCastrated){
+        return res.status(422).json({mensaje: 'NEUT_REQUIRED'});
     }
 
     await Pet.create(req.body)
