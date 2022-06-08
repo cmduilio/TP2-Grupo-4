@@ -1,16 +1,16 @@
 'use strict';
 
-const {randFirstName, randLastName, randNumber,
-       randEmail, randPassword, randUserName,
-       randStreetAddress, randText, randBetweenDate} = require('@ngneat/falso')
+const { randFirstName, randLastName, randNumber,
+  randEmail, randPassword, randUserName,
+  randStreetAddress, randText, randBetweenDate } = require('@ngneat/falso')
 
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
-    
+  async up(queryInterface, Sequelize) {
+
     let usuarios = []
 
-      for(var i = 0; i < 1000; i++){
+    for (var i = 0; i < 50; i++) {
 
         usuarios.push({
           userName : randUserName(),
@@ -34,15 +34,15 @@ module.exports = {
           updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
         });
 
-      }
+    }
 
-      await queryInterface.bulkInsert('users', usuarios, {});
+    await queryInterface.bulkInsert('users', usuarios, {});
 
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
 
-      await queryInterface.bulkDelete('users', null, {});
+    await queryInterface.bulkDelete('users', null, {});
 
   }
 };
