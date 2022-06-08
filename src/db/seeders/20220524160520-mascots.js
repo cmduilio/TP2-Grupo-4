@@ -57,6 +57,21 @@ module.exports = {
       });
     }
 
+    pets.push({
+      animal: "perro",
+      race: "golden",
+      name: "coco",
+      size: "mediano",
+      age: 11,
+      looksForOwner: true,
+      isVaccinated: true,
+      isCastrated: true,
+      comment: "juega",
+      createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
+      updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
+      userId: 1,
+    })
+
     await queryInterface.bulkInsert('pets', pets, {});
 
   },
