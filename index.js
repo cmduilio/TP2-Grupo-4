@@ -27,7 +27,7 @@ app.get('/users/:id', async function (req, res) {
 })
 
 
-app.patch('/users/:id/updateuser', (req, res) => {
+app.patch('/users/:id', (req, res) => {
 
     let option = { where: { id: req.params.id } };
     let setData = req.body;
