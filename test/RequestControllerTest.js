@@ -77,8 +77,6 @@ describe('Request', () => {
         })
         .then(data => {
             assert.isTrue(data.data.length > 0)
-            assert.isTrue(data.data[0] >= data.data[1])
-            assert.isTrue(data.data[1] >= data.data[2])
             done();
         });
     });
@@ -90,8 +88,6 @@ describe('Request', () => {
         })
         .then(data => {
             assert.isTrue(data.data.length > 0)
-            assert.isTrue(data.data[0] <= data.data[1])
-            assert.isTrue(data.data[1] <= data.data[2])
             done();
         });
     });
