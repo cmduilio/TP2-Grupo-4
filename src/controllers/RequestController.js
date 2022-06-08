@@ -37,21 +37,25 @@ router.post('/requests', async function (req, res) {
 
 router.get('/requests-count-best', async function (req, res) {
     await Request.findAll({
-        group: ['idMascot'],
-        attributes: ['idMascot', [sequelize.fn('COUNT', 'id'), 'count']],
+        attributes:[[sequelize.fn('COUNT', 'id'), 'count']],
+        include: {model: Pet, attributes:['animal']},
+        group: ['Pet.animal'],
         order: [[sequelize.literal('count'), 'desc']],
-        limit: 3,
+        raw: true,
+        limit: 3
     }).then(data =>{
         res.status(200).send(data);
     });
 })
 
 router.get('/requests-count-worst', async function (req, res) {
-    await Pet.findAll({
-        attributes:['id',[sequelize.fn('COUNT', 'id'), 'count']],
-        include: {model: Request, attributes:['id']},
-        group: ['id'],
+    await Request.findAll({
+        attributes:[[sequelize.fn('COUNT', 'id'), 'count']],
+        include: {model: Pet, attributes:['animal']},
+        group: ['Pet.animal'],
         order: [[sequelize.literal('count'), 'asc']],
+        raw: true,
+        limit: 3
     }).then(data =>{
         res.status(200).send(data);
     });
