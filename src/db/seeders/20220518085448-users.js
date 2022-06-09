@@ -12,27 +12,27 @@ module.exports = {
 
     for (var i = 0; i < 50; i++) {
 
-      usuarios.push({
-        userName: randUserName(),
-
-        password: randPassword(),
-
-        name: randFirstName(),
-
-        lastName: randLastName(),
-
-        email: randEmail(),
-
-        address: randStreetAddress(),
-
-        phoneNumber: randNumber({ min: 10000000, max: 90000000 }),
-
-        requise: randText(),
-
-        createdAt: randBetweenDate({ from: new Date('01/01/2012'), to: new Date('01/01/2015') }),
-
-        updatedAt: randBetweenDate({ from: new Date('10/07/2015'), to: new Date('01/01/2021') })
-      });
+        usuarios.push({
+          userName : randUserName(),
+    
+          password : randPassword(),
+      
+          name : randFirstName(),
+      
+          lastName : randLastName(),
+      
+          email : randEmail(),
+      
+          address : randStreetAddress(),
+      
+          phoneNumber : randNumber({min: 10000000, max: 99999999}),
+      
+          requise : randText(),
+    
+          createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
+    
+          updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')})
+        });
 
     }
 
