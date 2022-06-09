@@ -74,6 +74,8 @@ app.get('/pets/:id', async function (req, res) {
 
 app.post('/pets', async function (req, res) {
 
+    const userId = 1;
+
     let data = await Pet.findOne(
         {where: {
             animal: req.body.animal,
@@ -84,7 +86,7 @@ app.post('/pets', async function (req, res) {
             looksForOwner: req.body.looksForOwner,
             isVaccinated: req.body.isVaccinated,
             isCastrated: req.body.isCastrated,
-            userId: req.body.userId
+            userId: userId
     }});
     
     if(data){
@@ -97,9 +99,13 @@ app.post('/pets', async function (req, res) {
         return res.status(422).json({mensaje: 'NEUT_REQUIRED'});
     }
 
-    await Pet.create(req.body)
-        .then(data => { res.status(201).json({}) })
-        .catch(err => { res.status(422).json(err) })
+    let pet = req.body;
+    pet.userId = userId;
+
+    await Pet.create(pet)
+        .then(data => {res.status(201).json({})})
+            .catch(err => {res.status(422).json(err)})
+
 });
 
 app.listen(8001);
