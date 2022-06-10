@@ -10,7 +10,7 @@ describe('Add Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/4/user/8',
+            url: 'http://localhost:8001/pets/4',
             data: {
                 name: "Rocky",
             }
@@ -27,7 +27,7 @@ describe('Add Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/40/user/3',
+            url: 'http://localhost:8001/pets/40',
             data: {
                 animal: "perro",
             }
@@ -37,11 +37,11 @@ describe('Add Pet', () => {
         })
     });
 
-    it('returns 422 if userId does not match pet userId', (done)=> {
+    it('returns 422 if userId does not match pets userId', (done)=> {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/1/user/2',
+            url: 'http://localhost:8001/pets/1',
             data: {
                 nombre: "robert",
             }
