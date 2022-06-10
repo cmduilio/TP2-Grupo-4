@@ -60,6 +60,7 @@ module.exports = {
       });
     }
 
+    //pet for addPet testing
     pets.push({
       animal: "perro",
       race: "golden",
@@ -73,7 +74,40 @@ module.exports = {
       createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
       updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
       userId: 1,
-    })
+    });
+
+    //pet for updatePet testing
+    pets.push({
+      id: 1001,
+      animal: "perro",
+      race: "labrador",
+      name: "tony",
+      size: "mediano",
+      age: 10,
+      looksForOwner: true,
+      isVaccinated: true,
+      isCastrated: true,
+      comment: "juega",
+      createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
+      updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
+      userId: 2,
+    });
+
+    pets.push({
+      id: 1002,
+      animal: "gato",
+      race: "siames",
+      name: "mia",
+      size: "chico",
+      age: 5,
+      looksForOwner: true,
+      isVaccinated: true,
+      isCastrated: true,
+      comment: "come",
+      createdAt: randBetweenDate({from: new Date('01/01/2012'), to: new Date('01/01/2015')}),
+      updatedAt: randBetweenDate({from: new Date('10/07/2015'), to: new Date('01/01/2021')}),
+      userId: 1,
+    });
 
     await queryInterface.bulkInsert('pets', pets, {});
 

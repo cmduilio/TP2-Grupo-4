@@ -12,7 +12,7 @@ describe('Update Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/4',
+            url: 'http://localhost:8001/pets/1001',
             data: {
                 name: "Rocky",
             }
@@ -29,9 +29,9 @@ describe('Update Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/40',
+            url: 'http://localhost:8001/pets/1001',
             data: {
-                animal: "perro",
+                animal: "gato",
             }
         }).catch(err => {
             assert.equal(err.response.status, 422);
@@ -43,7 +43,7 @@ describe('Update Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/42',
+            url: 'http://localhost:8001/pets/1002',
             data: {
                 nombre: "robert",
             }
