@@ -224,11 +224,13 @@ app.patch('/pets/:id', async function (req, res) {
     const userId = 2;
 
     let data = await Pet.findOne({ where: {
-        id: req.params.id,
-        userId :  userId} });
+        id: req.params.id} });
     
     if(data == null){
         return res.status(422).json({mensaje: 'ANIMAL_NOT_FOUND'});
+    }
+    if(data.userId != userId){
+        return res.status(422).json({mensaje: 'ANIMAL_DOES_NOT_BELONG_TO_USER'});
     }    
     if(req.body.animal){
         if(data.animal !== req.body.animal){
