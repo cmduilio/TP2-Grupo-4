@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-const { User, Pet } = require('./src/db/models');
+const { User, Pet, Request } = require('./src/db/models');
 const RequestController = require('./src/controllers/RequestController');
 
 app.use(express.json())
@@ -178,11 +178,14 @@ app.get('/pets', async function (req, res) {
 app.get('/pets/:id', async function (req, res) {
 
     let data = await Pet.findByPk(req.params.id);
+    
 
     res.send(data);
 });
 
 app.post('/pets', async function (req, res) {
+
+    const userId = 1;
 
     let data = await Pet.findOne(
         {where: {
@@ -194,7 +197,7 @@ app.post('/pets', async function (req, res) {
             looksForOwner: req.body.looksForOwner,
             isVaccinated: req.body.isVaccinated,
             isCastrated: req.body.isCastrated,
-            userId: req.body.userId
+            userId: userId
     }});
     
     if(data){
@@ -207,9 +210,69 @@ app.post('/pets', async function (req, res) {
         return res.status(422).json({mensaje: 'NEUT_REQUIRED'});
     }
 
-    await Pet.create(req.body)
-        .then(data => { res.status(201).json({}) })
-        .catch(err => { res.status(422).json(err) })
+    let pet = req.body;
+    pet.userId = userId;
+
+    await Pet.create(pet)
+        .then(data => {res.status(201).json({})})
+            .catch(err => {res.status(422).json(err)})
+
 });
+
+app.patch('/pets/:id', async function (req, res) {
+
+    const userId = 2;
+
+    let data = await Pet.findOne({ where: {
+        id: req.params.id} });
+    
+    if(data == null){
+        return res.status(422).json({mensaje: 'ANIMAL_NOT_FOUND'});
+    }
+    if(data.userId != userId){
+        return res.status(422).json({mensaje: 'ANIMAL_DOES_NOT_BELONG_TO_USER'});
+    }    
+    if(req.body.animal){
+        if(data.animal !== req.body.animal){
+            return res.status(422).json({mensaje: 'ANIMALTYPE_CANNOT_BE_MODIFIED'});
+        }
+    }
+
+    await Pet.update(
+        req.body,
+        {where: {id: data.id}})
+            .then(data => {res.status(201).json({})})
+                .catch(err => {res.status(422).json(err)})
+});
+
+app.put('/reject-request', async function(req, res) {
+
+    let request = await Request.findByPk(req.body.requestId);
+    const userId = 20;
+
+    if(request == null){
+        res.status(400).json({ message: "REQ_NOT_FOUND" });
+        return;
+    }
+    else if(request.idOwner != userId){
+        res.status(400).json({ message: "REQ_BELONGS_TO_DIFFERENT_USER" });
+        return;
+    }
+    else if(request.status == 'rejected'){
+        res.status(400).json({ message: "REQ_ALREADY_REJECTED" });
+        return;
+    }
+    else if(request.status == 'accepted'){
+        res.status(400).json({ message: "REQ_ALREADY_ACCEPTED" });
+        return;
+    }
+
+    await Request.update
+    (
+        {status: "rejected"}, 
+        { where: { id: request.id } }
+
+    ).then(data => {res.status(200).json({})});
+})
 
 app.listen(8001);

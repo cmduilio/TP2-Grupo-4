@@ -3,6 +3,7 @@ const chaiFetch = require('chai-fetch');
 chai.use(chaiFetch);
 const axios = require('axios');
 const { assert } = require('chai');
+const {randBird, randFirstName} = require('@ngneat/falso');
 
 describe('Add Pet', () => {
 
@@ -13,15 +14,14 @@ describe('Add Pet', () => {
             url: 'http://localhost:8001/pets',
             data: {
                 animal: "otro",
-                race: "canario",
-                name: "tilin",
+                race: randBird(),
+                name: randFirstName(),
                 size: "chico",
                 age: 2,
                 looksForOwner: true,
                 isVaccinated: false,
                 isCastrated: true,
-                comment: "come poco",
-                userId: 11
+                comment: "come poco"
             }
         }).then(response => {
             // testeo
@@ -46,8 +46,7 @@ describe('Add Pet', () => {
                 looksForOwner: true,
                 isVaccinated: false,
                 isCastrated: true,
-                comment: "come mucho",
-                userId: 4
+                comment: "come mucho"
             }
         }).catch(err => {
             assert.equal(err.response.status, 422);
@@ -69,8 +68,7 @@ describe('Add Pet', () => {
                 looksForOwner: true,
                 isVaccinated: false,
                 isCastrated: false,
-                comment: "come mucho",
-                userId: 4
+                comment: "come mucho"
             }
         }).catch(err => {
             assert.equal(err.response.status, 422);
@@ -92,8 +90,7 @@ describe('Add Pet', () => {
                 looksForOwner: true,
                 isVaccinated: true,
                 isCastrated: true,
-                comment: "juega",
-                userId: 1
+                comment: "juega"
             }
         }).catch(err => {
             assert.equal(err.response.status, 422);
