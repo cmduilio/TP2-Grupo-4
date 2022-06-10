@@ -7,7 +7,7 @@ describe('Reject Request', () => {
     it('returns 200 if request is rejected correctly', (done)=> {
 
          axios({
-             method: "put",
+             method: "patch",
              url: 'http://localhost:8001/reject-request',
              data: {
                 requestId: 1000
@@ -25,7 +25,7 @@ describe('Reject Request', () => {
     it('returns 400 if request is not found', (done)=> {
 
         axios({
-            method: "put",
+            method: "patch",
             url: 'http://localhost:8001/reject-request',
             data: {
                requestId: 0
@@ -42,7 +42,7 @@ describe('Reject Request', () => {
    it('returns 400 if request does not belong to user', (done)=> {
 
         axios({
-            method: "put",
+            method: "patch",
             url: 'http://localhost:8001/reject-request',
             data: {
             requestId: 1001
@@ -59,7 +59,7 @@ describe('Reject Request', () => {
     it('returns 400 if request is already rejected', (done)=> {
 
         axios({
-            method: "put",
+            method: "patch",
             url: 'http://localhost:8001/reject-request',
             data: {
             requestId: 1002
@@ -76,7 +76,7 @@ describe('Reject Request', () => {
     it('returns 400 if request is already accepted', (done)=> {
 
         axios({
-            method: "put",
+            method: "patch",
             url: 'http://localhost:8001/reject-request',
             data: {
             requestId: 1003
