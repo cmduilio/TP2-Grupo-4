@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-const { User, Pet } = require('./src/db/models');
+const { User, Pet, Request } = require('./src/db/models');
 const RequestController = require('./src/controllers/RequestController');
 
 app.use(express.json())
@@ -242,5 +242,35 @@ app.patch('/pets/:id', async function (req, res) {
             .then(data => {res.status(201).json({})})
                 .catch(err => {res.status(422).json(err)})
 });
+
+app.put('/reject-request', async function(req, res) {
+
+    let request = await Request.findByPk(req.body.requestId);
+    const userId = 942070;
+
+    if(request == null){
+        res.status(400).json({ message: "REQ_NOT_FOUND" });
+        return;
+    }
+    else if(request.idOwner != userId){
+        res.status(400).json({ message: "REQ_BELONGS_TO_DIFFERENT_USER" });
+        return;
+    }
+    else if(request.status == 'rejected'){
+        res.status(400).json({ message: "REQ_ALREADY_REJECTED" });
+        return;
+    }
+    else if(request.status == 'accepted'){
+        res.status(400).json({ message: "REQ_ALREADY_ACCEPTED" });
+        return;
+    }
+
+    await Request.update
+    (
+        {status: "rejected"}, 
+        { where: { id: request.id } }
+
+    ).then(data => {res.status(200).json({})});
+})
 
 app.listen(8001);
