@@ -246,7 +246,7 @@ app.patch('/pets/:id', async function (req, res) {
 app.put('/reject-request', async function(req, res) {
 
     let request = await Request.findByPk(req.body.requestId);
-    const userId = 942070;
+    const userId = 20;
 
     if(request == null){
         res.status(400).json({ message: "REQ_NOT_FOUND" });
