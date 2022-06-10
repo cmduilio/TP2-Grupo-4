@@ -102,11 +102,13 @@ app.post('/pets', async function (req, res) {
             .catch(err => {res.status(422).json(err)})
 });
 
-app.patch('/pets/:id/user/:userId', async function (req, res) {
+app.patch('/pets/:id', async function (req, res) {
+
+    const userId = 2;
 
     let data = await Pet.findOne({ where: {
         id: req.params.id,
-        userId :  req.params.userId} });
+        userId :  userId} });
     
     if(data == null){
         return res.status(422).json({mensaje: 'ANIMAL_NOT_FOUND'});
