@@ -138,7 +138,7 @@ app.post('/user', async function(req, res){
 
     if(Object.keys(req.body).length === 0)
     {
-       res.status(400).json({ message: "Body can't be empty" }).send();
+       res.status(401).json({ message: "Body can't be empty" }).send();
        return;
     }
 
@@ -146,7 +146,7 @@ app.post('/user', async function(req, res){
 
     if(userName){
 
-          res.status(400).json({ message: "Can't register, existing user" }).send();
+          res.status(402).json({ message: "Can't register, existing user" }).send(); //error
           return;
     }
 
@@ -154,7 +154,7 @@ app.post('/user', async function(req, res){
 
     if(email){
 
-            res.status(400).json({ message: "Can't register, existing email" }).send();
+            res.status(403).json({ message: "Can't register, existing email" }).send();
             return;
     }
 
@@ -162,7 +162,7 @@ app.post('/user', async function(req, res){
 
     await User.create(req.body)
         .then(res => {res.status(201).json({}).send()  })
-        .catch(err => { res.status(400).json(err).send()  })
+        .catch(err => { res.status(405).json(err).send()  })
 
     })
 
