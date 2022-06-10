@@ -3,6 +3,7 @@ const chaiFetch = require('chai-fetch');
 chai.use(chaiFetch);
 const axios = require('axios');
 const { assert } = require('chai');
+const {randBird, randFirstName} = require('@ngneat/falso');
 
 describe('Add Pet', () => {
 
@@ -13,8 +14,8 @@ describe('Add Pet', () => {
             url: 'http://localhost:8001/pets',
             data: {
                 animal: "otro",
-                race: "canario",
-                name: "tilin",
+                race: randBird(),
+                name: randFirstName(),
                 size: "chico",
                 age: 2,
                 looksForOwner: true,
