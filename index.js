@@ -4,7 +4,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 
-const { User, Pet } = require('./src/db/models');
+const { User, Pet, Request } = require('./src/db/models');
 const RequestController = require('./src/controllers/RequestController');
 
 app.use(express.json())
