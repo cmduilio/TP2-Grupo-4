@@ -10,7 +10,7 @@ describe('Reject Request', () => {
              method: "put",
              url: 'http://localhost:8001/reject-request',
              data: {
-                requestId: 5
+                requestId: 1000
              }
              
          }).then(response => {
@@ -45,7 +45,7 @@ describe('Reject Request', () => {
             method: "put",
             url: 'http://localhost:8001/reject-request',
             data: {
-            requestId: 6
+            requestId: 1001
             }
             
         }).then(response => {
@@ -62,7 +62,7 @@ describe('Reject Request', () => {
             method: "put",
             url: 'http://localhost:8001/reject-request',
             data: {
-            requestId: 7
+            requestId: 1002
             }
             
         }).then(response => {
@@ -79,7 +79,7 @@ describe('Reject Request', () => {
             method: "put",
             url: 'http://localhost:8001/reject-request',
             data: {
-            requestId: 8
+            requestId: 1003
             }
             
         }).then(response => {
