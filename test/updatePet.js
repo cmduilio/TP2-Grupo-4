@@ -3,8 +3,10 @@ const chaiFetch = require('chai-fetch');
 chai.use(chaiFetch);
 const axios = require('axios');
 const { assert } = require('chai');
+const { Pet } = require('../src/db/models');
+const {randDog, randFirstName, randText} = require('@ngneat/falso');
 
-describe('Add Pet', () => {
+describe('Update Pet', () => {
 
     it('returns 201 if pet is updated', (done)=> {
         
@@ -41,7 +43,21 @@ describe('Add Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/1',
+            url: 'http://localhost:8001/pets/42',
+            data: {
+                nombre: "robert",
+            }
+        }).catch(err => {
+            assert.equal(err.response.status, 422);
+            done();
+        })
+    });
+
+    it('returns 422 if animal is not found', (done)=> {
+        
+        axios({
+            method: "patch",
+            url: 'http://localhost:8001/pets/1000000',
             data: {
                 nombre: "robert",
             }
