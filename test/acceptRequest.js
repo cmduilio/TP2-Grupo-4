@@ -16,7 +16,7 @@ describe('Accept Request', () => {
 
          axios({
              method: "put",
-             url: `http://localhost:6001/accept-request/${requestId}`,
+             url: `http://localhost:8001/accept-request/${requestId}`,
              data: body
              
          }).then(response => {
@@ -34,7 +34,7 @@ describe('Accept Request', () => {
 
      axios({
          method: "put",
-         url: `http://localhost:6001/accept-request/${requestId}`,
+         url: `http://localhost:8001/accept-request/${requestId}`,
          data: body
          
      }).then(response => {
@@ -59,7 +59,7 @@ it('returns 400 if request is rejected by bad Key', (done)=> {
 
      axios({
          method: "put",
-         url: `http://localhost:6001/accept-request/${requestId}`,
+         url: `http://localhost:8001/accept-request/${requestId}`,
          data: body
          
      }).then(response => {
@@ -85,7 +85,7 @@ it('returns 400 if request is rejected by a empty body', (done)=> {
 
      axios({
          method: "put",
-         url: `http://localhost:6001/accept-request/${requestId}`,
+         url: `http://localhost:8001/accept-request/${requestId}`,
          data: body
          
      }).then(response => {
@@ -111,7 +111,7 @@ it('returns 400 if request is rejected by a bad body', (done)=> {
 
      axios({
          method: "put",
-         url: `http://localhost:6001/accept-request/${requestId}`,
+         url: `http://localhost:8001/accept-request/${requestId}`,
          data: body
          
      }).then(response => {
@@ -136,7 +136,7 @@ it('returns 400 if request isn\'t exist', (done)=> {
 
      axios({
          method: "put",
-         url: `http://localhost:6001/accept-request/${requestId}`,
+         url: `http://localhost:8001/accept-request/${requestId}`,
          data: body
          
      }).then(response => {
@@ -164,7 +164,7 @@ for(let f_method of methods){
 
         axios({
             method: f_method,
-            url: `http://localhost:6001/accept-request/${requestId}`,
+            url: `http://localhost:8001/accept-request/${requestId}`,
             data: body
          
         }).then(response => {
