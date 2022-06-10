@@ -257,7 +257,7 @@ app.patch('/pets/:id', async function (req, res) {
                 .catch(err => {res.status(422).json(err)})
 });
 
-app.put('/reject-request', async function(req, res) {
+app.patch('/reject-request', async function(req, res) {
 
     let request = await Request.findByPk(req.body.requestId);
     const userId = 20;
