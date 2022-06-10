@@ -22,7 +22,7 @@ describe('Update user', () => {
         
         axios({
             method: "patch",
-            url: `http://localhost:6001/users/${userid}`,
+            url: `http://localhost:8001/users/${userid}`,
             data: user
             
         }).then(response => {
@@ -43,7 +43,7 @@ describe('Update user', () => {
 
         axios({
             method: "patch",
-            url: `http://localhost:6001/users/${userid}`,
+            url: `http://localhost:8001/users/${userid}`,
             data: user,
             
         }).then(response => {
@@ -63,7 +63,7 @@ describe('Update user', () => {
 
         axios({
             method: "patch",
-            url: `http://localhost:6001/users/${userid}`,
+            url: `http://localhost:8001/users/${userid}`,
             data: user,
         }).then(response => {
             assert.equal(response.status, 400);
@@ -87,7 +87,7 @@ describe('Update user', () => {
 
         axios({
             method: "patch",
-            url: `http://localhost:6001/users/${userid}`,
+            url: `http://localhost:8001/users/${userid}`,
             data: user,
         }).then(response => {
             assert.equal(response.status, 400);
@@ -117,7 +117,7 @@ describe('Update user', () => {
 
         axios({
             method: "patch",
-            url: `http://localhost:6001/users/${userid}`,
+            url: `http://localhost:8001/users/${userid}`,
             data: user,
         }).then(response => {
             assert.equal(response.status, 400);   ///aqui solo llegas a recibir las respuestas 200 a 300
@@ -144,7 +144,7 @@ describe('Update user', () => {
             };
                 axios({
                     method: f_method,
-                    url: `http://localhost:6001/users/${userid}`,
+                    url: `http://localhost:8001/users/${userid}`,
                     data: user,
                 }).then(response => {
                     assert.equal(response.status, 404);
