@@ -13,11 +13,11 @@ describe('User registered', () => {
     it('returns 201 if the user successfully registered', (done)=> {
            
         const body ={ 
-            userName : "xxcalirten22332",
+            userName : "x212xcali1231332",
             password : "marcala213012",
             name : "Carlitaso",
             lastName : "Miguelangeloush",
-            email : "asssd@ualalala.com",
+            email : "123@uala12312m",
             address : "Palaca 22",
             phoneNumber : 1223123232,
             requise : "Alguna cosa"
