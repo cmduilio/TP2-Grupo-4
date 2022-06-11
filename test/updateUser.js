@@ -3,22 +3,24 @@ const chaiFetch = require('chai-fetch');
 chai.use(chaiFetch);
 const axios = require('axios');
 const { assert } = require('chai');
+const { randBetweenDate, randStreetAddress, randEmail,
+    randUserName, randFirstName, randLastName, randPassword,
+    randNumber, randText } = require('@ngneat/falso');
 
 
 describe('Update user', () => {
 
     it('returns 201 if update all attributes is succesful', (done)=> {
         
-        const userid = 1;
+        const userid = randNumber({min: 1, max: 50});
         const user = {
-                name: "rinas",
-                lastName: "grande",
-                email: "grandemuygrande@gmail.com",
-                address: "asdas 2x",
-                phoneNumber: 1234,
-                requise: "asda",
+            name : randFirstName(),
+            lastName : randLastName(),
+            email : randEmail(),
+            address : randStreetAddress(),
+            phoneNumber : randNumber({min: 10000000, max: 99999999}),
+            requise : randText(),
         };
-
         
         axios({
             method: "patch",
@@ -28,7 +30,7 @@ describe('Update user', () => {
         }).then(response => {
             assert.equal(response.status, 201);
             done();
-        }).catch(err => {
+        }).catch(err => { console.error(err)
             done(err);
         })
     });
@@ -36,9 +38,9 @@ describe('Update user', () => {
 
     it('returns 201 if update one attribute is succesful', (done)=> {
         
-        const userid = 2;
+        const userid = randNumber({min: 1, max: 50});
         const user = {
-                name: "Carlito",
+                name : randUserName(),
         };
 
         axios({
@@ -56,9 +58,9 @@ describe('Update user', () => {
 
 
     it('returns 400 if update the ID attribute is fail', (done)=> {
-        const userid = 3;    
+        const userid = -randNumber({min: 1, max: 50});    
         const user = {
-                id: -userid,
+                id: -randNumber({min: 1, max: 50}),
         };
 
         axios({
@@ -82,7 +84,7 @@ describe('Update user', () => {
 
 
     it('returns 400 if update with empty body is fail', (done)=> {
-        const userid = 4    
+        const userid = randNumber({min: 1, max: 50});   
         const user = {};
 
         axios({
@@ -106,7 +108,7 @@ describe('Update user', () => {
 
 
     it('returns 400 if update with only empty attributes is fail', (done)=> {
-        const userid = 5    
+        const userid = randNumber({min: 1, max: 50});    
         const user = {
             name: "     ",
             lastName: "   ",
@@ -135,10 +137,10 @@ describe('Update user', () => {
     });
 
 
-    const methods = ["get", "post", "put", "delete"];
+    const methods = ["post", "put", "delete"];
     for(let f_method of methods){
-        it(`returns 404 if update with ${f_method} methods fail`, (done)=> {
-            const userid = 6    
+        it(`returns 4xx if update with ${f_method} methods fail`, (done)=> {
+            const userid = randNumber({min: 1, max: 50});    
             const user = {
                 name: f_method
             };
@@ -147,12 +149,12 @@ describe('Update user', () => {
                     url: `http://localhost:6001/users/${userid}`,
                     data: user,
                 }).then(response => {
-                    assert.equal(response.status, 404);
+                    assert.isAtLeast(response.status, 400);
                     done();
                 }).catch(err => {
                     if(Object.keys(err).includes("response")) 
                     {
-                        assert.equal(err.response.status, 404); 
+                        assert.isAtLeast(err.response.status, 400); 
                         done();
                     }
                     else done(err);
