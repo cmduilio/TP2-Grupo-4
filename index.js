@@ -5,6 +5,8 @@ app.use(express.urlencoded({extended: true}))
 const {User} = require('./src/db/models');
 const user = require('./src/db/models/user');
 
+app.listen(8001);
+
 app.get('/', function (req, res) {
 
     res.send('hello123');
@@ -88,4 +90,3 @@ app.get('/user-create', async function (req, res) {
 
 });
 
-app.listen(6001);
