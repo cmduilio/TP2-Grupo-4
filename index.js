@@ -175,6 +175,18 @@ app.get('/pets', async function (req, res) {
     res.send(data);
 });
 
+app.get('/requests-sent', async function(req, res) {
+
+    const userId = 10;
+
+    let data = await Request.findAll({
+        where: {idRequester : userId},
+        limit: 20
+    });
+    
+    res.send(data);
+})
+
 app.get('/pets/:id', async function (req, res) {
 
     let data = await Pet.findByPk(req.params.id);
@@ -245,7 +257,7 @@ app.patch('/pets/:id', async function (req, res) {
                 .catch(err => {res.status(422).json(err)})
 });
 
-app.put('/reject-request', async function(req, res) {
+app.patch('/reject-request', async function(req, res) {
 
     let request = await Request.findByPk(req.body.requestId);
     const userId = 20;
