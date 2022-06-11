@@ -2,17 +2,9 @@ const express = require('express');
 const { get } = require('express/lib/response');
 const app = express();
 app.use(express.json());
-app.use(express.urlencoded({extended: true}))
+app.use(express.urlencoded({ extended: true }))
 const {Request, User, Pet} = require('./src/db/models');
-app.listen(8001);
-require('./test/testInServer')(app);
 
-
- 
-app.get('/', function(req, res){
-
-    res.send('hello123');
-})
 
 app.get('/users', async function (req, res) {
 
@@ -216,3 +208,5 @@ app.post('/pets', async function (req, res) {
 });
 
 
+app.listen(8001);
+require('./test/testInServer')(app);
