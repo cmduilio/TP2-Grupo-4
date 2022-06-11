@@ -10,7 +10,7 @@ describe('Get requests sent', () => {
         
         axios({
             method: "get",
-            url: 'http://localhost:8001/requests-sent',
+            url: 'http://localhost:8001/sent-requests',
         }).then(response => {
             // testeo
             assert.equal(response.status, 200);
