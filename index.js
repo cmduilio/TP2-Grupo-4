@@ -4,10 +4,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 const {Request, User, Pet} = require('./src/db/models');
-
 app.listen(8001);
-
 require('./test/testInServer')(app);
+
+
  
 app.get('/', function(req, res){
 
@@ -172,14 +172,12 @@ app.get('/requests', async function(req,res){
 
 app.get('/requests/:id', async function(req,res){
     let data = await Request.findByPk(req.params.id);
-
     res.send(data);
 })
 
 app.post('/requests', async function(req,res){
     console.log(req.body)
     await Request.create(req.body);
-
     res.send(req.body);
 })
 
