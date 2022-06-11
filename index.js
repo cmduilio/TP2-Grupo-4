@@ -62,29 +62,32 @@ app.patch('/users/:id', (req, res) => {
 
 });
 
-app.put('/accept-request/:id', async function(req, res){
+app.patch('/request/:id', async function(req, res){
     
     
-    if(Object.keys(req.body).length !== 1 || !Object.keys(req.body).includes('requestKey')){
+    if( Object.keys(req.body).length !== 2 || 
+        !req.body.requestKey || 
+        !req.body.status || 
+        req.body.status === "open"
+    ){
         res.status(400).json({ message: "Bad request" }).send();
         return;
     }
 
     let idRequest = req.params.id;
-    let key = req.body.requestKey;   //obtenemos la llave de permiso
+    let body = req.body;
     
-    let request = await Request.findByPk(idRequest);
+    let theRequest = await Request.findByPk(idRequest);
 
-    if(!request){
-        res.status(400).json({ message: "Record not found" });
+    if(!theRequest){
+        res.status(400).json({ message: "The request don't exist" }).send();
         return;
     }
-
-    else if((request.idOwner + request.idMascot) !== key ){
+    else if((theRequest.idOwner + theRequest.idMascot) !== body.requestKey ){
         res.status(400).json({ message: "Bad Key" }).send();
         return;
     }
-    else if(request.status !== "open" ){
+    else if(theRequest.status !== "open" ){
         res.status(400).json({ message: "Request are already accepted" }).send();
         return;
     }
@@ -92,7 +95,7 @@ app.put('/accept-request/:id', async function(req, res){
     let modified = 
     await Request.update
     (
-        {status: "accepted"}, 
+        body, 
         { where: { id: idRequest } }
 
     ).catch(err => { res.status(500).json({ message: "Error updating" }).send(); });
@@ -105,8 +108,8 @@ app.put('/accept-request/:id', async function(req, res){
 
     modified = 
     await Pet.update(
-        {userId: request.idRequester},
-        { where: { id: request.idMascot } }
+        {userId: theRequest.idRequester},
+        { where: { id: theRequest.idMascot } }
 
     ).catch(err => { res.status(500).json({ message: "Error updating" }).send(); });
 
@@ -159,7 +162,23 @@ app.get('/user-create', async function (req, res) {
     res.send("Create")
 });
 
-app.get('/pets', async function (req, res) {
+app.get('/requests', async function(req,res){
+    let data = await Request.findAll();
+    res.send(data);
+})
+
+app.get('/requests/:id', async function(req,res){
+    let data = await Request.findByPk(req.params.id);
+    res.send(data);
+})
+
+app.post('/requests', async function(req,res){
+    console.log(req.body)
+    await Request.create(req.body);
+    res.send(req.body);
+})
+
+app.get('/pets', async function(req, res) {
 
     let q = {};
 
@@ -288,3 +307,4 @@ app.patch('/reject-request', async function(req, res) {
 })
 
 app.listen(8001);
+require('./test/testInServer')(app);
