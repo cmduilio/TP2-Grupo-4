@@ -161,10 +161,9 @@ app.post('/user', async function(req, res){
     //no puede un usuario usar el mismo email que otro
 
     await User.create(req.body)
-        .then(res => {res.status(201).json({}).send()  })
-        .catch(err => { res.status(405).json(err).send()  })
-
-    })
+        .then(user => { res.status(201).send(); })
+        .catch(err => { res.status(405).json(err).send();});
+})
 
 app.get('/user-create', async function (req, res) {
 ///test?
