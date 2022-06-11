@@ -59,13 +59,10 @@ describe('Accept Request', async ()=> {
 
         }).then(response => {
             assert.equal(response.status, 400);
-            done();
         }).catch(err => {
-            if (Object.keys(err).includes("response")) {
-                assert.equal(err.response.status, 400);
-                done();
-            }
-            else done(err);
+            if(!err.response) throw err;
+            assert.equal(err.response.status, 400);
+            done();
         }).catch(err => {
             done(err);
         })
@@ -80,13 +77,10 @@ describe('Accept Request', async ()=> {
 
         }).then(response => {
             assert.equal(response.status, 400);
-            done();
         }).catch(err => {
-            if (Object.keys(err).includes("response")) {
-                assert.equal(err.response.status, 400);
-                done();
-            }
-            else done(err);
+            if(!err.response) throw err;
+            assert.equal(err.response.status, 400);
+            done();
         }).catch(err => {
             done(err);
         })
@@ -102,13 +96,10 @@ describe('Accept Request', async ()=> {
             url: `http://localhost:8001/request/${requestId}`,
         }).then(response => {
             assert.equal(response.status, 400);
-            done();
         }).catch(err => {
-            if (Object.keys(err).includes("response")) {
-                assert.equal(err.response.status, 400);
-                done();
-            }
-            else done(err);
+            if(!err.response) throw err;
+            assert.equal(err.response.status, 400);
+            done();
         }).catch(err => {
             done(err);
         })
@@ -129,13 +120,10 @@ describe('Accept Request', async ()=> {
 
         }).then(response => {
             assert.equal(response.status, 400);
-            done();
         }).catch(err => {
-            if (Object.keys(err).includes("response")) {
-                assert.equal(err.response.status, 400);
-                done();
-            }
-            else done(err);
+            if(!err.response) throw err;
+            assert.equal(err.response.status, 400);
+            done();
         }).catch(err => {
             done(err);
         })
@@ -153,13 +141,10 @@ describe('Accept Request', async ()=> {
 
         }).then(response => {
             assert.equal(response.status, 400);
-            done();
         }).catch(err => {
-            if (Object.keys(err).includes("response")) {
-                assert.equal(err.response.status, 400);
-                done();
-            }
-            else done(err);
+            if(!err.response) throw err;
+            assert.equal(err.response.status, 400);
+            done();
         }).catch(err => {
             done(err);
         })
@@ -179,14 +164,11 @@ describe('Accept Request', async ()=> {
                 data: body
 
             }).then(response => {
-                assert.equal(response.status, 404);
-                done();
+                assert.equal(response.status, 400);
             }).catch(err => {
-                if (Object.keys(err).includes("response")) {
-                    assert.equal(err.response.status, 404);
-                    done();
-                }
-                else done(err);
+                if(!err.response) throw err;
+                assert.equal(err.response.status, 400);
+                done();
             }).catch(err => {
                 done(err);
             })
