@@ -137,6 +137,25 @@ app.get('/requesttest/:id', async function(req, res){
     
 })
 
+app.post('/user', async function(req, res){
+
+    for(let i in req.body){ 
+        if((/^\s*$/i).test(req.body[i])){   
+            delete req.body[i];
+        }
+    }
+
+    if(Object.keys(req.body).length === 0)
+    {
+       res.status(400).json({ message: "Body can't be empty" }).send();
+       return;
+    }
+
+    await User.create(req.body)
+        .then(user => { res.status(201).send(); })
+        .catch(err => { res.status(400).json(err).send();});
+})
+
 app.get('/user-create', async function (req, res) {
 ///test?
     await User.create({
