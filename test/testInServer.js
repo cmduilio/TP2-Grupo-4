@@ -1,11 +1,11 @@
 
-    const { Request, User, Pet } = require('../src/db/models');
+const { Request, User, Pet } = require('../src/db/models');
 
-    const { randFirstName, randLastName, randNumber,
-        randEmail, randPassword, randUserName,
-        randStreetAddress, randText,
-        randDog, randBoolean
-    } = require('@ngneat/falso');
+const { randFirstName, randLastName, randNumber,
+    randEmail, randPassword, randUserName,
+    randStreetAddress, randText,
+    randDog, randBoolean
+} = require('@ngneat/falso');
 module.exports = function (app) {
 
     app.get('/test/request', async function (req, res) {
@@ -37,8 +37,8 @@ module.exports = function (app) {
         });
 
 
-        let newRequest = {requestKey:users[0].id + pet.id};
-        
+        let newRequest = { requestKey: users[0].id + pet.id };
+
         Object.assign(newRequest, (await Request.create({
             idOwner: users[0].id,
             idMascot: pet.id,
