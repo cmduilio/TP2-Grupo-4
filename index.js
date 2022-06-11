@@ -70,6 +70,7 @@ app.patch('/request/:id', async function(req, res){
     
     if( Object.keys(req.body).length !== 2 || 
         !req.body.requestKey || 
+        !req.body.status || 
         req.body.status === "open"
     ){
         res.status(400).json({ message: "Bad request" }).send();
