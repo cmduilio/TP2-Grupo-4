@@ -136,33 +136,21 @@ app.get('/requesttest/:id', async function(req, res){
 
 app.post('/user', async function(req, res){
 
+    for(let i in req.body){ 
+        if((/^\s*$/i).test(req.body[i])){   
+            delete req.body[i];
+        }
+    }
+
     if(Object.keys(req.body).length === 0)
     {
-       res.status(401).json({ message: "Body can't be empty" }).send();
+       res.status(400).json({ message: "Body can't be empty" }).send();
        return;
     }
 
-    userName = await User.findOne({ where : { userName : req.body.userName}});
-
-    if(userName){
-
-          res.status(402).json({ message: "Can't register, existing user" }).send(); //error
-          return;
-    }
-
-    email = await User.findOne({ where : { email : req.body.email}});
-
-    if(email){
-
-            res.status(403).json({ message: "Can't register, existing email" }).send();
-            return;
-    }
-
-    //no puede un usuario usar el mismo email que otro
-
     await User.create(req.body)
         .then(user => { res.status(201).send(); })
-        .catch(err => { res.status(405).json(err).send();});
+        .catch(err => { res.status(400).json(err).send();});
 })
 
 app.get('/user-create', async function (req, res) {
