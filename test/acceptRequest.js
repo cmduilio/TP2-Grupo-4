@@ -5,6 +5,7 @@ const axios = require('axios');
 const { assert } = require('chai');
 
 
+
 describe('Accept Request', async ()=> {
     let testRequest;
 
@@ -164,10 +165,10 @@ describe('Accept Request', async ()=> {
                 data: body
 
             }).then(response => {
-                assert.equal(response.status, 400);
+                assert.equal(response.status, 404);
             }).catch(err => {
                 if(!err.response) throw err;
-                assert.equal(err.response.status, 400);
+                assert.equal(err.response.status, 404);
                 done();
             }).catch(err => {
                 done(err);
