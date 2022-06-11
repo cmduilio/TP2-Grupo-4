@@ -175,12 +175,24 @@ app.get('/pets', async function (req, res) {
     res.send(data);
 });
 
-app.get('/requests-sent', async function(req, res) {
+app.get('/sent-requests', async function(req, res) {
 
     const userId = 10;
 
     let data = await Request.findAll({
         where: {idRequester : userId},
+        limit: 20
+    });
+    
+    res.send(data);
+})
+
+app.get('/received-requests', async function(req, res) {
+
+    const userId = 10;
+
+    let data = await Request.findAll({
+        where: {idOwner : userId},
         limit: 20
     });
     
