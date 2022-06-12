@@ -7,11 +7,6 @@ const user = require('./src/db/models/user');
 
 app.listen(8001);
 
-app.get('/', function (req, res) {
-
-    res.send('hello123');
-})
-
 app.get('/users', async function (req, res) {
 
     let data = await User.findAll()
@@ -59,34 +54,6 @@ app.patch('/users/:id', (req, res) => {
             res.status(500).json({ message: "Error updating" });
         })
     }
-
-
 });
 
-app.get('/user-create', async function (req, res) {
-///test?
-    await User.create({
-
-        userName: "Carlox",
-
-        password: "1212",
-
-        name: "Carlos",
-
-        lastName: "Macedo",
-
-        email: "aaa@aaa",
-
-        address: "Case 22",
-
-        phoneNumber: "1231232",
-
-        requise: "muchos"
-
-    })
-
-    res.send("Create")
-
-
-});
 
