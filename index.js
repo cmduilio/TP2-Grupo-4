@@ -7,10 +7,13 @@ app.use(express.urlencoded({ extended: true }))
 const { User, Pet, Request } = require('./src/db/models');
 const RequestController = require('./src/controllers/RequestController');
 
+<<<<<<< HEAD
 app.use(express.json())
 
 app.use(RequestController);
 
+=======
+>>>>>>> actualizar-usuario
 app.get('/users', async function (req, res) {
 
     let data = await User.findAll()
@@ -56,10 +59,9 @@ app.patch('/users/:id', (req, res) => {
             res.status(500).json({ message: "Error updating" });
         })
     }
-
-
 });
 
+<<<<<<< HEAD
 app.patch('/request/:id', async function (req, res) {
 
 
@@ -261,6 +263,8 @@ app.post('/pets', async function (req, res) {
             .catch(err => {res.status(422).json(err)})
 
 });
+=======
+>>>>>>> actualizar-usuario
 
 app.patch('/pets/:id', async function (req, res) {
 
