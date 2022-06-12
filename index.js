@@ -179,6 +179,7 @@ app.get('/pets', async function (req, res) {
     res.send(data);
 });
 
+<<<<<<< HEAD
 app.get('/requests-sent', async function(req, res) {
 
     const userId = 10;
@@ -189,6 +190,17 @@ app.get('/requests-sent', async function(req, res) {
     });
     
     res.send(data);
+=======
+app.get('/pets/lookForOwner', async function(req, res){
+
+    let data = await Pet.findAll(
+
+        {where : {looksForOwner : true}}
+    )
+
+    res.send(data)
+
+>>>>>>> ver-mascotas-en-adopcion
 })
 
 app.get('/pets/:id', async function (req, res) {
