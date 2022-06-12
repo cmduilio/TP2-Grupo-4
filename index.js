@@ -205,7 +205,7 @@ app.get('/view/adoptable/', async function (req, res){
 
 let filter = req.query
 for(let key in filter ){
-    if(filter[key].length==2){
+    if(Array.isArray(filter[key]) && filter[key].length==2){
         filter[key] = { [gte]:filter[key][0],[lte]:filter[key][1]};
     }
 }
