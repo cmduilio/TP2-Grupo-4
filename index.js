@@ -175,7 +175,7 @@ app.get('/pets', async function (req, res) {
     res.send(data);
 });
 
-app.get('/pets-for-adoption', async function(req, res){
+app.get('/pets/lookForOwner', async function(req, res){
 
     let data = await Pet.findAll(
 
