@@ -181,8 +181,9 @@ app.get('/pets', async function (req, res) {
     res.send(data);
 });
 
-<<<<<<< HEAD
+
 app.get('/requests-sent', async function(req, res) {
+
 
     const userId = 10;
 
@@ -192,7 +193,7 @@ app.get('/requests-sent', async function(req, res) {
     });
     
     res.send(data);
-=======
+
 app.get('/pets/lookForOwner', async function(req, res){
 
     let data = await Pet.findAll(
@@ -202,7 +203,18 @@ app.get('/pets/lookForOwner', async function(req, res){
 
     res.send(data)
 
->>>>>>> ver-mascotas-en-adopcion
+})
+
+app.get('/received-requests', async function(req, res) {
+
+    const userId = 10;
+
+    let data = await Request.findAll({
+        where: {idOwner : userId},
+        limit: 20
+    });
+    
+    res.send(data);
 })
 
 app.get('/pets/:id', async function (req, res) {
@@ -322,4 +334,4 @@ app.patch('/reject-request', async function(req, res) {
 })
 
 app.listen(8001);
-require('./test/testInServer')(app);
+//require('./test/testInServer')(app);
