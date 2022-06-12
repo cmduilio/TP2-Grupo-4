@@ -3,6 +3,8 @@ const { get } = require('express/lib/response');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+const Sequelize = require('sequelize');
+const {gte, lte, opIn} = Sequelize.Op;
 
 const { User, Pet, Request } = require('./src/db/models');
 const RequestController = require('./src/controllers/RequestController');
@@ -209,6 +211,22 @@ app.get('/pets/:id', async function (req, res) {
     
 
     res.send(data);
+});
+
+app.get('/view/adoptable/', async function (req, res){
+
+let filter = req.query
+for(let key in filter ){
+    if(Array.isArray(filter[key]) && filter[key].length==2){
+        filter[key] = { [gte]:filter[key][0],[lte]:filter[key][1]};
+    }
+}
+
+filter.looksForOwner = true;
+    let pets = await Pet.findAll({
+        where : filter
+    });
+    res.send(pets);
 });
 
 app.post('/pets', async function (req, res) {
