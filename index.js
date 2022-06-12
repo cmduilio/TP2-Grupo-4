@@ -3,10 +3,6 @@ const { get } = require('express/lib/response');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
-<<<<<<< HEAD
-=======
-const { Request, User, Pet } = require('./src/db/models');
->>>>>>> aceptar-solicitud
 
 const { User, Pet, Request } = require('./src/db/models');
 const RequestController = require('./src/controllers/RequestController');
@@ -134,21 +130,6 @@ app.patch('/request/:id', async function (req, res) {
 
 })
 
-<<<<<<< HEAD
-app.get('/requesttest/:id', async function(req, res){
-
-    let valor =
-        await Request.findAll({
-            where: {
-                id : req.params.id 
-            },
-            attributes: ['idMascot']
-        });
-
-        res.send(valor);
-    
-})
-
 app.post('/user', async function(req, res){
 
     for(let i in req.body){ 
@@ -168,8 +149,6 @@ app.post('/user', async function(req, res){
         .catch(err => { res.status(400).json(err).send();});
 })
 
-=======
->>>>>>> aceptar-solicitud
 app.get('/user-create', async function (req, res) {
     ///test?
     await User.create({
@@ -227,7 +206,6 @@ app.get('/pets', async function (req, res) {
     res.send(data);
 });
 
-<<<<<<< HEAD
 app.get('/requests-sent', async function(req, res) {
 
     const userId = 10;
@@ -240,8 +218,6 @@ app.get('/requests-sent', async function(req, res) {
     res.send(data);
 })
 
-=======
->>>>>>> aceptar-solicitud
 app.get('/pets/:id', async function (req, res) {
 
     let data = await Pet.findByPk(req.params.id);
@@ -252,7 +228,6 @@ app.get('/pets/:id', async function (req, res) {
 
 app.post('/pets', async function (req, res) {
 
-<<<<<<< HEAD
     const userId = 1;
 
     let data = await Pet.findOne(
@@ -273,16 +248,11 @@ app.post('/pets', async function (req, res) {
     }
     if(req.body.age > 3 && !req.body.isVaccinated){
        return res.status(422).json({mensaje: 'VACC_REQUIRED'});
-=======
-    if (req.body.age > 3 && !req.body.isVaccinated) {
-        return res.status(422).json({ mensaje: 'VACC_REQUIRED' });
->>>>>>> aceptar-solicitud
     }
     if(req.body.age <= 5 && !req.body.isCastrated){
         return res.status(422).json({mensaje: 'NEUT_REQUIRED'});
     }
 
-<<<<<<< HEAD
     let pet = req.body;
     pet.userId = userId;
 
@@ -290,11 +260,6 @@ app.post('/pets', async function (req, res) {
         .then(data => {res.status(201).json({})})
             .catch(err => {res.status(422).json(err)})
 
-=======
-    await Pet.create(req.body)
-        .then(data => { res.status(201).json({}) })
-        .catch(err => { res.status(422).json(err) })
->>>>>>> aceptar-solicitud
 });
 
 app.patch('/pets/:id', async function (req, res) {
