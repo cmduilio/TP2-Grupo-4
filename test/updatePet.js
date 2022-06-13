@@ -21,7 +21,7 @@ describe('Update Pet', () => {
             looksForOwner: true,
             isVaccinated: true,
             isCastrated: true,
-            comment: randText(),
+            comment: "test",
             userId: 2,
         }).then( (x) => ob1 = x);
 
@@ -34,7 +34,7 @@ describe('Update Pet', () => {
             looksForOwner: true,
             isVaccinated: true,
             isCastrated: true,
-            comment: randText(),
+            comment: "test",
             userId: 1,
         }).then( (x) => ob2 = x);
     })
@@ -65,7 +65,6 @@ describe('Update Pet', () => {
                 animal: "gato",
             }
         }).catch(err => {
-            console.log(ob1);
             assert.equal(err.response.status, 422);
             done();
         })
@@ -80,7 +79,6 @@ describe('Update Pet', () => {
                 nombre: "robert",
             }
         }).catch(err => {
-            console.log(ob2);
             assert.equal(err.response.status, 422);
             done();
         })
