@@ -193,6 +193,7 @@ app.get('/requests-sent', async function(req, res) {
     });
     
     res.send(data);
+});
 
 app.get('/pets/lookForOwner', async function(req, res){
 
@@ -334,4 +335,4 @@ app.patch('/reject-request', async function(req, res) {
 })
 
 app.listen(8001);
-//require('./test/testInServer')(app);
+require('./test/testInServer')(app);
