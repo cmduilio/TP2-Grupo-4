@@ -43,7 +43,7 @@ describe('Update Pet', () => {
         
         axios({
             method: "patch",
-            url: 'http://localhost:8001/pets/1001',
+            url: `http://localhost:8001/pets/${ob1.id}`,
             data: {
                 name: "Rocky",
             }
