@@ -178,6 +178,10 @@ app.get('/pets', async function (req, res) {
         limit: 20
     });
 
+    if(!data){
+        return res.status(422).json({mensaje: 'USER_NOT_FOUND'});
+    }
+
     res.send(data);
 });
 
