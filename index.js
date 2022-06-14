@@ -160,7 +160,6 @@ app.get('/requests/:id', async function (req, res) {
 })
 
 app.post('/requests', async function (req, res) {
-    console.log(req.body)
     await Request.create(req.body);
     res.send(req.body);
 })
