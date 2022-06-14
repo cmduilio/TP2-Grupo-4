@@ -181,18 +181,6 @@ app.get('/pets', async function (req, res) {
     res.send(data);
 });
 
-<<<<<<< HEAD
-app.get('/requests-sent', async function(req, res) {
-
-    const userId = 10;
-
-    let data = await Request.findAll({
-        where: {idRequester : userId},
-        limit: 20
-    });
-    
-    res.send(data);
-=======
 app.get('/pets/lookForOwner', async function(req, res){
 
     let data = await Pet.findAll(
@@ -202,7 +190,6 @@ app.get('/pets/lookForOwner', async function(req, res){
 
     res.send(data)
 
->>>>>>> ver-mascotas-en-adopcion
 })
 
 app.get('/pets/:id', async function (req, res) {
