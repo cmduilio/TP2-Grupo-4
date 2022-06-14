@@ -5,6 +5,7 @@ const axios = require('axios');
 const { assert } = require('chai');
 const { randNumber } = require('@ngneat/falso');
 
+
 describe('Request by animal', () => {
 
     it('returns 400 when this id is invalid', (done)=> {
@@ -17,7 +18,14 @@ describe('Request by animal', () => {
         }).then(response => {
             assert.equal(response.status, 400);
         }).catch(err => {
-            done();
+            if(!err.response)  done(err);
+            else{
+                assert.equal(err.response.status, 400);
+                done();
+            }
+        })
+        .catch(err => {
+            done(err);
         })
     });
 
@@ -47,7 +55,14 @@ describe('Request by animal', () => {
         }).then(response => {
             assert.equal(response.status, 400);
         }).catch(err => {
-            done();
+            if(!err.response)  done(err);
+            else{
+                assert.equal(err.response.status, 400);
+                done();
+            }
+        })
+        .catch(err => {
+            done(err);
         })
     });
 
@@ -64,23 +79,18 @@ describe('Request by animal', () => {
                     url: `http://localhost:8001/view-requests-by-animal/${idAnimal}`,
                     data: user,
                 }).then(response => {
-                    assert.isAtLeast(response.status, 404);
-                    done();
+                    assert.equal(response.status, 400);
                 }).catch(err => {
-                    if(Object.keys(err).includes("response")) 
-                    {
-                        assert.isAtLeast(err.response.status, 404); 
+                    if(!err.response)  done(err);
+                    else{
+                        assert.equal(err.response.status, 400);
                         done();
                     }
-                    else done(err);
-                }).catch(err => {
-                    done();
                 })
-            
+                .catch(err => {
+                    done(err);
+                })       
         });
     }
-
-
-
 
 })
