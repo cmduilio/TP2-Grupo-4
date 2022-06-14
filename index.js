@@ -160,7 +160,6 @@ app.get('/requests/:id', async function (req, res) {
 })
 
 app.post('/requests', async function (req, res) {
-    console.log(req.body)
     await Request.create(req.body);
     res.send(req.body);
 })
@@ -178,6 +177,24 @@ app.get('/pets', async function (req, res) {
         limit: 20
     });
 
+    if(!data){
+        return res.status(422).json({mensaje: 'USER_NOT_FOUND'});
+    }
+
+    res.send(data);
+});
+
+
+app.get('/requests-sent', async function(req, res) {
+
+
+    const userId = 10;
+
+    let data = await Request.findAll({
+        where: {idRequester : userId},
+        limit: 20
+    });
+    
     res.send(data);
 });
 
@@ -190,6 +207,18 @@ app.get('/pets/lookForOwner', async function(req, res){
 
     res.send(data)
 
+})
+
+app.get('/received-requests', async function(req, res) {
+
+    const userId = 10;
+
+    let data = await Request.findAll({
+        where: {idOwner : userId},
+        limit: 20
+    });
+    
+    res.send(data);
 })
 
 app.get('/pets/:id', async function (req, res) {

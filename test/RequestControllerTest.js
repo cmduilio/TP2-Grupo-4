@@ -53,7 +53,7 @@ describe('Request', () => {
         });
     });
 
-    it.skip('return created request', (done) =>{
+    it('return created request', (done) =>{
         axios({
             method: 'post',
             url: 'http://localhost:8001/requests',
@@ -65,7 +65,7 @@ describe('Request', () => {
             }
         })
         .then(data => {
-            assert.isTrue(data.id)
+            assert.isTrue(data.data.id !== undefined)
             done();
         });
     });

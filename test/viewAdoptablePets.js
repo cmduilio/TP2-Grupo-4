@@ -20,36 +20,39 @@ describe('View adoptable pets', () => {
          }).catch(err => {
              done(err);
          })
- });
+    });
 
 
 
-const methods = ["put", "post", "patch", "delete"];
-for(let f_method of methods){
-    it(`returns 404 if not get the view with ${f_method}`, (done)=> {
-        axios({
-            method: f_method,
-            url: `http://localhost:8001/pets/lookForOwner`,
-         
-        }).then(response => {
-                assert.equal(response.status, 404);
-                done();
-        }).catch(err => {
+    const methods = ["put", "post", "patch", "delete"];
+    for(let f_method of methods){
+        it(`returns 404 if not get the view with ${f_method}`, (done)=> {
+            axios({
+                method: f_method,
+                url: `http://localhost:8001/pets/lookForOwner`,
+            
+            }).then(response => {
+                    assert.equal(response.status, 404);
+                    done();
+            }).catch(err => {
+
                 if(Object.keys(err).includes("response")) 
                 {
-                    assert.equal(err.response.status, 404); 
-                    done();
+                    if(f_method === "patch"){
+                        assert.equal(err.response.status, 422); 
+                        done();
+                    }
+                    else
+                    {
+                        assert.equal(err.response.status, 404); 
+                        done();
+                    }
                 }
-                else done(err);
-        }).catch(err => {
-                done(err);
-        })
-
-
-    });
-}
-
-
-
-
+                else 
+                {
+                    done(err)
+                };
+            })
+        });
+    }
 })

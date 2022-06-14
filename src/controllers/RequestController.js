@@ -17,7 +17,10 @@ router.get('/requests/:id', async function (req, res) {
             }
         )
     }
-    res.status(200).send(data);
+    else 
+    {
+        res.status(200).send(data);
+    }
 })
 
 router.post('/requests', async function (req, res) {

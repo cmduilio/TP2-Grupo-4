@@ -40,12 +40,12 @@ describe('User registered', () => {
 
     });
     it('returns 400 if the user is duplicate', (done) => {
-
+        let duplicate = {...userTest, id: 1}
 
         axios({
             method: "post",
             url: `http://localhost:8001/user`,
-            data: userTest
+            data: duplicate
 
         }).then(response => {
             assert.equal(response.status, 400);
@@ -56,8 +56,6 @@ describe('User registered', () => {
                 done();
             }
             else done(err);
-        }).catch(err => {
-            done(err);
         })
 
     });
