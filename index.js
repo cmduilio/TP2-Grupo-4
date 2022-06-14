@@ -332,7 +332,42 @@ app.patch('/reject-request', async function(req, res) {
         { where: { id: request.id } }
 
     ).then(data => {res.status(200).json({})});
-})
+});
+
+app.get('/top-requesters', async function(req, res){
+    //returns top 3 users (requesters) with the most amount of accepted requests
+
+    let data = await Request.findAll({
+        attributes:[[Sequelize.fn('COUNT', 'id'), 'count']],
+        include: {model: User},
+        group: ['User.name'],
+        where: {
+            status: 'accepted',
+          },
+        raw: true,
+        limit: 3
+    })
+
+    res.send(data);
+});
+
+/* app.get('/top-owners', async function(req, res){
+
+    let data = await Request.findAll({
+        attributes: [
+            'idOwner',
+            [Sequelize.literal('Count(Distinct(id))'), 'TotalAcceptedRequests']
+        ],
+        group: 'idOwner',
+        order: [[Sequelize.literal('TotalAcceptedRequests'), 'DESC']],
+        where: {
+            status: 'accepted'
+        },
+        limit: 3
+    })
+
+    res.send(data);
+}) */
 
 app.listen(8001);
 require('./test/testInServer')(app);
