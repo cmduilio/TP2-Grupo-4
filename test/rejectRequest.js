@@ -63,7 +63,6 @@ describe('Reject Request', () => {
              assert.equal(response.status, 200);
              done();
          }).catch(err => {
-            console.log(err);
             done(err);
          })
     });
