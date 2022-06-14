@@ -191,10 +191,9 @@ app.get('/pets/totalrequestsbypet/:id', async function (req, res) {
         return;
     }
 
-    let pet = Pet.findByPk(idAnimal);
+    let pet = await Pet.findByPk(idAnimal);
 
-    //if pet have a owner
-    if (!pet.looksForOwner) {
+    if (pet.looksForOwner) {
         res.status(400).json({ idAnimal }).send();
         return;
     } 
@@ -204,11 +203,11 @@ app.get('/pets/totalrequestsbypet/:id', async function (req, res) {
     })
 
 
-    //total request
-    if (countRequest) {
-        res.status(200).json({ countRequest });
-        return;
-    }
+    // total request
+        if (countRequest) {
+            res.status(200).json({ countRequest });
+            return;
+        }
 
     res.send({countRequest});
 
