@@ -181,6 +181,39 @@ app.get('/pets', async function (req, res) {
     res.send(data);
 });
 
+app.get('/pets/totalrequestsbypet/:id', async function (req, res) {
+
+    let idAnimal = req.params.id;
+
+    //invalid id
+    if (idAnimal < 0) {
+        res.status(400).json({ idAnimal }).send();
+        return;
+    }
+
+    let pet = Pet.findByPk(idAnimal);
+
+    //if pet have a owner
+    if (!pet.looksForOwner) {
+        res.status(400).json({ idAnimal }).send();
+        return;
+    } 
+
+    let countRequest = await Request.count({
+        where: { idMascot: idAnimal, status: 'open' }
+    })
+
+
+    //total request
+    if (countRequest) {
+        res.status(200).json({ countRequest });
+        return;
+    }
+
+    res.send({countRequest});
+
+})
+
 app.get('/pets/lookForOwner', async function(req, res){
 
     let data = await Pet.findAll(
