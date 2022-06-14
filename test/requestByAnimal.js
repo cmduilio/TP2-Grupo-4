@@ -37,4 +37,19 @@ describe('Request by animal', () => {
     });
 
 
+    it('returns 400 when if the animal have a owner', (done)=> {
+        
+        const idAnimal = randNumber({min: 1, max: 50});   
+
+        axios({
+            method: "get",
+            url: `http://localhost:8001/pets/totalrequestsbypet/${idAnimal}`,
+        }).then(response => {
+            assert.equal(response.status, 400);
+        }).catch(err => {
+            done();
+        })
+    });
+
+
 })
