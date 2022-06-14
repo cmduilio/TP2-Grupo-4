@@ -39,6 +39,7 @@ describe('Request by animal', () => {
             url: `http://localhost:8001/pets/totalrequestsbypet/${idAnimal}`,
         }).then(response => {
             assert.equal(response.status, 200);
+            done();
         }).catch(err => {
             done();
         })
@@ -53,7 +54,8 @@ describe('Request by animal', () => {
             method: "get",
             url: `http://localhost:8001/pets/totalrequestsbypet/${idAnimal}`,
         }).then(response => {
-            assert.equal(response.status, 400);
+            assert.equal(response.status, 200);
+            done();
         }).catch(err => {
             if(!err.response)  done(err);
             else{
@@ -79,17 +81,14 @@ describe('Request by animal', () => {
                     url: `http://localhost:8001/view-requests-by-animal/${idAnimal}`,
                     data: user,
                 }).then(response => {
-                    assert.equal(response.status, 400);
+                    assert.equal(response.status, 404);
                 }).catch(err => {
-                    if(!err.response)  done(err);
-                    else{
-                        assert.equal(err.response.status, 400);
-                        done();
-                    }
-                })
-                .catch(err => {
+                    if(!err.response) throw err;
+                    assert.equal(err.response.status, 404);
+                    done();
+                }).catch(err => {
                     done(err);
-                })       
+                })   
         });
     }
 
