@@ -193,11 +193,6 @@ app.get('/pets/totalrequestsbypet/:id', async function (req, res) {
 
     let pet = await Pet.findByPk(idAnimal);
 
-    if (pet.looksForOwner) {
-        res.status(400).json({ idAnimal }).send();
-        return;
-    } 
-
     let countRequest = await Request.count({
         where: { idMascot: idAnimal, status: 'open' }
     })
