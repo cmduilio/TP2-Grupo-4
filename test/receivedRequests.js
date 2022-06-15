@@ -6,11 +6,11 @@ const { assert } = require('chai');
 
 describe('Get requests sent', () => {
 
-    it('returns 200 when showing requests made by user', (done)=> {
+    it('returns 200 when showing users received requests', (done)=> {
         
         axios({
             method: "get",
-            url: 'http://localhost:8001/sent-requests',
+            url: 'http://localhost:8001/received-requests',
         }).then(response => {
             // testeo
             assert.equal(response.status, 200);
