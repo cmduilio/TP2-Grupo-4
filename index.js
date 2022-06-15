@@ -125,7 +125,7 @@ app.patch('/request/:id', async function (req, res) {
         return;
     }
 
-    res.status(201).send("Actualizacion completa");
+    res.status(201).send("Update succesfull");
 
 
 })
