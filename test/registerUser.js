@@ -20,7 +20,6 @@ describe('User registered', () => {
         phoneNumber: randNumber({ min: 10000000, max: 90000000 }),
         requise: randText(),
     };
-    //si se creo exitosamente
 
     it('returns 201 if the user successfully registered', (done) => {
 
