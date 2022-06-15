@@ -122,15 +122,15 @@ describe('Update user', () => {
             url: `http://localhost:8001/users/${userid}`,
             data: user,
         }).then(response => {
-            assert.equal(response.status, 400);   ///aqui solo llegas a recibir las respuestas 200 a 300
+            assert.equal(response.status, 400);
             done();
         }).catch(err => {
-            if(Object.keys(err).includes("response"))   /// Si error contiene respuesta significa que viene directo del servidor y no del .then
+            if(Object.keys(err).includes("response"))
             {
                 assert.equal(err.response.status, 400); 
                 done();
             }
-            else done(err);  /// por aqui se despachan las respuestas que fueron 200 o 300
+            else done(err);
         }).catch(err => {
             done(err);
         })
