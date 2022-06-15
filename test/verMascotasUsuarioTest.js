@@ -12,7 +12,6 @@ describe('View users pet', () => {
             method: "get",
             url: 'http://localhost:8001/pets?userId=1',
         }).then(response => {
-            // testeo
             assert.equal(response.status, 200);
             done();
         }).catch(err => {
@@ -26,7 +25,6 @@ describe('View users pet', () => {
             method: "get",
             url: 'http://localhost:8001/pets?userId=0',
         }).then(response => {
-            // testeo
             done();
         }).catch(err => {
             assert.equal(err.response.status, 422);
